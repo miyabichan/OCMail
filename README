@@ -1,0 +1,7 @@
+Tutorial
+
+Build for iOS
+
+1. Choose target "OCMail-iOSUniversal".
+2. Do "Build for Profiling".
+3. Created OCMail library to "${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal".

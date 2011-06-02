@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# For Xcode
+
+cat <<EOF > .gitignore
+# xcode noise
+build/*
+*/project.xcworkspace/*
+*/xcuserdata/*
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+
+# old skool
+.svn
+
+# osx noise
+.DS_Store
+*.swp
+*~.nib
+profile
+EOF
+
+cat <<EOF > .gitattributes
+*.pbxproj -crlf -diff -merge
+EOF
+
