@@ -93,30 +93,30 @@
 
 - (NSArray*)mailList {
 	carray* pop3s = [self createCArray];
+	if (!pop3s) return nil;
 	NSMutableArray* mails = [NSMutableArray array];
 	NSUInteger i;
 	for (i = 1; i <= carray_count(pop3s); ++i) {
-		char* result;
-		size_t length;
+		char* result = NULL;
+		size_t length = 0;
 		NSInteger retCode = mailpop3_retr(self.pop3, i, &result, &length);
-		if (retCode == MAILPOP3_NO_ERROR)
+		if (retCode == MAILPOP3_NO_ERROR && result)
 			[mails addObject:[NSString stringWithCString:result encoding:NSUTF8StringEncoding]];
 	}
-	if (pop3s) carray_free(pop3s);
 	return mails;
 }
 
 - (NSArray*)uidlList {
 	carray* pop3s = [self createCArray];
+	if (!pop3s) return nil;
 	NSMutableArray* uidls = [NSMutableArray array];
 	NSUInteger i;
 	for (i = 1; i <= carray_count(pop3s); ++i) {
 		struct mailpop3_msg_info* msg_info = NULL;
 		NSInteger retCode = mailpop3_get_msg_info(self.pop3, i, &msg_info);
-		if (retCode == MAILPOP3_NO_ERROR)
+		if (retCode == MAILPOP3_NO_ERROR && msg_info && msg_info->msg_uidl)
 			[uidls addObject:[NSString stringWithCString:msg_info->msg_uidl encoding:NSUTF8StringEncoding]];
 	}
-	if (pop3s) carray_free(pop3s);
 	return uidls;
 }
 
@@ -124,17 +124,16 @@
 
 - (NSArray*)topList {
 	carray* pop3s = [self createCArray];
+	if (!pop3s) return nil;
 	NSMutableArray* tops = [NSMutableArray array];
 	NSUInteger i;
 	for (i = 1; i <= carray_count(pop3s); ++i) {
-		char* result;
-		size_t length;
+		char* result = NULL;
+		size_t length = 0;
 		NSInteger retCode = mailpop3_top(self.pop3, i, UNLIMITED_LINE, &result, &length);
 		if (retCode == MAILPOP3_NO_ERROR)
 			[tops addObject:[NSString stringWithCString:result encoding:NSUTF8StringEncoding]];
-		if (result) mailpop3_top_free(result);
 	}
-	if (pop3s) carray_free(pop3s);
 	return tops;
 }
 
@@ -160,10 +159,11 @@
 	clist* capa_list = NULL;
 	NSMutableArray* capas = [NSMutableArray array];
 	int retCode = mailpop3_capa(self.pop3, &capa_list);
-	if (retCode != MAILPOP3_NO_ERROR) return nil;
+	if (retCode != MAILPOP3_NO_ERROR || !capa_list) return nil;
 	clistiter* iter;
 	for (iter = clist_begin(capa_list); iter != NULL; iter = clist_next(iter)) {
 		struct mailpop3_capa* pop3_capa = clist_content(iter);
+		if (!pop3_capa || !pop3_capa->cap_name) continue;
 		NSString* capaName = [NSString stringWithCString:(char*)pop3_capa->cap_name encoding:NSUTF8StringEncoding];
 		[capas addObject:capaName];
 	}
