@@ -278,7 +278,6 @@
 		886C8B45137B848E00C45F6A /* UIImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Util.m"; sourceTree = "<group>"; };
 		8893CDA7134C47B800CFFFED /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		8893CDA8134C47B800CFFFED /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
-		88A4D071134E91F9003CCB75 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
 		88A4D07C134E9306003CCB75 /* MailServerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailServerTest.h; sourceTree = "<group>"; };
 		88A4D07D134E9306003CCB75 /* MailServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailServerTest.m; sourceTree = "<group>"; };
 		88A4D082134E9F7E003CCB75 /* SMTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTPServer.h; sourceTree = "<group>"; };
@@ -289,9 +288,6 @@
 		88E06E471339C24C0044FAF2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		88E06E491339C24C0044FAF2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		88E06E681339C9780044FAF2 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		88E06E721339CA3E0044FAF2 /* Mailer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mailer-Info.plist"; sourceTree = "<group>"; };
-		88E06E741339CA460044FAF2 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		88E06E791339CA5B0044FAF2 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		88E06E7F1339CABD0044FAF2 /* HCAllOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAllOf.h; sourceTree = "<group>"; };
 		88E06E801339CABD0044FAF2 /* HCAnyOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAnyOf.h; sourceTree = "<group>"; };
 		88E06E811339CABD0044FAF2 /* HCAssertThat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAssertThat.h; sourceTree = "<group>"; };
@@ -719,14 +715,6 @@
 			path = Server;
 			sourceTree = "<group>";
 		};
-		88A4D070134E91E3003CCB75 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				88A4D071134E91F9003CCB75 /* Test-Info.plist */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
 		88C303A3134AF38A00F63430 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -751,7 +739,6 @@
 				88E06E621339C9200044FAF2 /* Classes */,
 				88E06E421339C24C0044FAF2 /* Frameworks */,
 				88E06E401339C24C0044FAF2 /* Products */,
-				88E06E6D1339C98E0044FAF2 /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -815,49 +802,6 @@
 				88E06E681339C9780044FAF2 /* Prefix.pch */,
 			);
 			path = main;
-			sourceTree = "<group>";
-		};
-		88E06E6D1339C98E0044FAF2 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				88E06E6E1339C9A50044FAF2 /* plist */,
-				88E06E6F1339C9B40044FAF2 /* strings */,
-				88E06E711339CA1D0044FAF2 /* xcdatamodeld */,
-				88E06E701339CA000044FAF2 /* xib */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		88E06E6E1339C9A50044FAF2 /* plist */ = {
-			isa = PBXGroup;
-			children = (
-				88A4D070134E91E3003CCB75 /* test */,
-				88E06E721339CA3E0044FAF2 /* Mailer-Info.plist */,
-			);
-			path = plist;
-			sourceTree = "<group>";
-		};
-		88E06E6F1339C9B40044FAF2 /* strings */ = {
-			isa = PBXGroup;
-			children = (
-				88E06E741339CA460044FAF2 /* InfoPlist.strings */,
-			);
-			path = strings;
-			sourceTree = "<group>";
-		};
-		88E06E701339CA000044FAF2 /* xib */ = {
-			isa = PBXGroup;
-			children = (
-				88E06E791339CA5B0044FAF2 /* MainWindow.xib */,
-			);
-			path = xib;
-			sourceTree = "<group>";
-		};
-		88E06E711339CA1D0044FAF2 /* xcdatamodeld */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = xcdatamodeld;
 			sourceTree = "<group>";
 		};
 		88E06E7B1339CA710044FAF2 /* OCMock */ = {
@@ -1283,7 +1227,7 @@
 					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
 					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
 				);
-				INFOPLIST_FILE = "Resources/plist/test/Test-Info.plist";
+				INFOPLIST_FILE = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/libetpan\"",
@@ -1329,7 +1273,7 @@
 					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
 					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
 				);
-				INFOPLIST_FILE = "Resources/plist/test/Test-Info.plist";
+				INFOPLIST_FILE = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/libetpan\"",
@@ -1375,7 +1319,7 @@
 					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
 					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
 				);
-				INFOPLIST_FILE = "Resources/plist/test/Test-Info.plist";
+				INFOPLIST_FILE = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/libetpan\"",
@@ -1421,7 +1365,7 @@
 					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
 					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
 				);
-				INFOPLIST_FILE = "Resources/plist/test/Test-Info.plist";
+				INFOPLIST_FILE = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/libetpan\"",
@@ -1519,7 +1463,7 @@
 					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
 					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
 				);
-				INFOPLIST_FILE = "Resources/plist/test/Test-Info.plist";
+				INFOPLIST_FILE = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/libetpan\"",
@@ -1565,7 +1509,7 @@
 					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
 					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
 				);
-				INFOPLIST_FILE = "Resources/plist/test/Test-Info.plist";
+				INFOPLIST_FILE = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/libetpan\"",
@@ -1701,6 +1645,7 @@
 				88F3BFEF1395CEA400C6E934 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
