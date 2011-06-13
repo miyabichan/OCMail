@@ -1083,7 +1083,7 @@
 	ret = [_imapSever select:@"INBOX"];
 	assertThatInteger(ret, equalToInt(MAILIMAP_NO_ERROR));
 	assertThatBool(_imapSever.selected, equalToBool(YES));
-	NSArray* array = [_imapSever searchHeader:@"asia" header:@"X-Original-To"];
+	NSArray* array = [_imapSever searchHeader:@"X-Original-To" field:@"asia"];
 	assertThat(array, notNilValue());
 	assertThatUnsignedInteger(array.count, greaterThan(numberInt(0)));
 	for (NSNumber* number in array) {
@@ -1300,7 +1300,7 @@
 	ret = [_imapSever select:@"INBOX"];
 	assertThatInteger(ret, equalToInt(MAILIMAP_NO_ERROR));
 	assertThatBool(_imapSever.selected, equalToBool(YES));
-	NSArray* array = [_imapSever uidSearchHeader:@"anydomain" header:@"X-Original-To"];
+	NSArray* array = [_imapSever uidSearchHeader:@"X-Original-To" field:@"anydomain"];
 	assertThat(array, notNilValue());
 	assertThatUnsignedInteger(array.count, greaterThan(numberInt(0)));
 	for (NSNumber* number in array) {
@@ -1979,6 +1979,5 @@
 #endif
 
 #endif
-
 
 @end

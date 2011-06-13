@@ -125,13 +125,12 @@ typedef enum {
 - (NSArray*)searchTo:(NSString*)field;
 - (NSArray*)searchCc:(NSString*)field;
 - (NSArray*)searchSubject:(NSString*)field;
-- (NSArray*)searchHeader:(NSString*)field header:(NSString*)header;
+- (NSArray*)searchHeader:(NSString*)header field:(NSString*)field;
 - (NSArray*)searchUID:(NSUInteger)uid;
 - (NSArray*)searchText:(NSString*)field;
 
 - (NSArray*)uidSearchAll;
 - (NSArray*)uidSearchSeen:(BOOL)checked;
-
 - (NSArray*)uidSearchAnswered:(BOOL)checked;
 - (NSArray*)uidSearchDeleted:(BOOL)checked;
 - (NSArray*)uidSearchFlagged:(BOOL)checked;
@@ -143,7 +142,7 @@ typedef enum {
 - (NSArray*)uidSearchTo:(NSString*)field;
 - (NSArray*)uidSearchCc:(NSString*)field;
 - (NSArray*)uidSearchSubject:(NSString*)field;
-- (NSArray*)uidSearchHeader:(NSString*)field header:(NSString*)header;
+- (NSArray*)uidSearchHeader:(NSString*)header field:(NSString*)field;
 - (NSArray*)uidSearchUID:(NSUInteger)uid;
 - (NSArray*)uidSearchText:(NSString*)field;
 

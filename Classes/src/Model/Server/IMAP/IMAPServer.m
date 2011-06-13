@@ -850,7 +850,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_all();
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -861,7 +861,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createSeenSearchKey:checked];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -872,7 +872,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createAnsweredSearchKey:checked];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -883,7 +883,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createDeletedSearchKey:checked];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -894,7 +894,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createFlaggedSearchKey:YES];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -905,7 +905,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createKeywordSearchKey:YES keyword:keyword];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -916,7 +916,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createRecentSearchKey];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -927,7 +927,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createDraftSearchKey];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -938,7 +938,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_from([MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
@@ -949,7 +949,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_to([MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
@@ -960,7 +960,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_cc([MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
@@ -971,18 +971,18 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_subject([MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
 }
 
-- (NSArray*)searchHeader:(NSString*)field header:(NSString*)header {
+- (NSArray*)searchHeader:(NSString*)header field:(NSString*)field {
 	assert(self.imap != NULL);
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_header([MailUtil createCharStream:header], [MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
@@ -994,7 +994,7 @@
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_single(uid);
 	struct mailimap_search_key* key = mailimap_search_key_new_uid(set);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -1005,7 +1005,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_text([MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
@@ -1016,7 +1016,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_all();
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -1027,7 +1027,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createSeenSearchKey:checked];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -1038,7 +1038,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createAnsweredSearchKey:checked];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -1049,7 +1049,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createDeletedSearchKey:checked];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -1060,7 +1060,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createFlaggedSearchKey:checked];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -1071,7 +1071,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createKeywordSearchKey:checked keyword:keyword];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -1082,7 +1082,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createRecentSearchKey];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -1093,7 +1093,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createDraftSearchKey];
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -1104,7 +1104,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_from([MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
@@ -1115,7 +1115,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_to([MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
@@ -1126,7 +1126,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_cc([MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
@@ -1137,18 +1137,18 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_subject([MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
 }
 
-- (NSArray*)uidSearchHeader:(NSString*)field header:(NSString*)header {
+- (NSArray*)uidSearchHeader:(NSString*)header field:(NSString*)field {
 	assert(self.imap != NULL);
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_header([MailUtil createCharStream:header], [MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
@@ -1160,7 +1160,7 @@
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_single(uid);
 	struct mailimap_search_key* key = mailimap_search_key_new_uid(set);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) mailimap_search_key_free(key);
 	return array;
@@ -1171,7 +1171,7 @@
 	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_text([MailUtil createCharStream:field]);
-	char* charset = "";
+	char* charset = NULL;
 	NSArray* array = [self createUIDSearchResults:charset key:key];
 	if (key) free(key);
 	return array;
