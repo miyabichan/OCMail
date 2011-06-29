@@ -18,11 +18,13 @@
 @synthesize portNo = portNo_;
 @synthesize ssl = ssl_;
 @synthesize mechanism = mechanism_;
+@synthesize connected = connected_;
 @synthesize authorized = authorized_;
 
 
 - (id)init {
 	if ((self = [super init])) {
+		self.connected = NO;
 	}
 	return self;
 }

@@ -97,33 +97,35 @@
 		retCode = mailimap_ssl_connect(self.imap, [self.address cStringUsingEncoding:NSUTF8StringEncoding], self.portNo);
 	else
 		retCode = mailimap_socket_connect(self.imap, [self.address cStringUsingEncoding:NSUTF8StringEncoding], self.portNo);
+	if (retCode <= MAILIMAP_NO_ERROR_NON_AUTHENTICATED) self.connected = YES;
 	return retCode;
 }
 
 - (NSInteger)disconnect {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailimap_logout(self.imap);
+	if (retCode == MAILIMAP_NO_ERROR) self.connected = NO;
 	return retCode;
 }
 
 - (NSInteger)startTLS {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailimap_starttls(self.imap);
 	return retCode;
 }
 
 - (NSInteger)noop {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailimap_noop(self.imap);
 	return retCode;
 }
 
 - (NSInteger)authServer {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	char* userName = [MailUtil createCharStream:self.userName];
 	char* password = [MailUtil createCharStream:self.password];
 	return [self authWithUserName:userName password:password address:[self.address cStringUsingEncoding:NSUTF8StringEncoding]];
@@ -144,7 +146,7 @@
 
 - (NSArray*)capability {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_capability_data* data = NULL;
 	int retCode = mailimap_capability(self.imap, &data);
 	NSMutableArray* array = [NSMutableArray array];
@@ -161,7 +163,7 @@
 
 - (NSArray*)allFolders {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized)
+	if (!self.connected || !self.authorized)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	clist* folderList = NULL;
 	int retCode = mailimap_list(self.imap, "", "*", &folderList);
@@ -179,7 +181,7 @@
 
 - (NSArray*)subscribedFolders {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized)
+	if (!self.connected || !self.authorized)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	clist* folderList = NULL;
 	int retCode = mailimap_lsub(self.imap, "", "*", &folderList);
@@ -221,7 +223,7 @@
 
 - (NSInteger)rename:(NSString*)oldName newName:(NSString*)newName {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized)
+	if (!self.connected || !self.authorized)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	char* old = [MailUtil createCharStream:oldName];
 	char* new = [MailUtil createCharStream:newName];
@@ -231,7 +233,7 @@
 
 - (NSDictionary*)status:(NSString*)mailbox infos:(NSArray*)infos {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized)
+	if (!self.connected || !self.authorized)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	char* name = [MailUtil createCharStream:mailbox];
 	struct mailimap_status_att_list* att_list = mailimap_status_att_list_new_empty();
@@ -254,7 +256,7 @@
 
 - (NSInteger)check {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailimap_check(self.imap);
 	return retCode;
@@ -262,7 +264,7 @@
 
 - (NSInteger)close {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailimap_close(self.imap);
 	if (retCode == MAILIMAP_NO_ERROR) self.selected = YES;
@@ -272,7 +274,7 @@
 
 - (NSInteger)startIdle {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	if (self.idle) return MAILIMAP_NO_ERROR;
 	int retCode = mailimap_idle(self.imap);
 	if (retCode == MAILIMAP_NO_ERROR) self.idle = YES;
@@ -281,7 +283,7 @@
 
 - (NSInteger)endIdle {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	if (!self.idle) return MAILIMAP_NO_ERROR;
 	int retCode = mailimap_idle_done(self.imap);
 	if (retCode == MAILIMAP_NO_ERROR) self.idle = NO;
@@ -290,7 +292,7 @@
 
 - (NSDictionary*)getQuotaRoot:(NSString*)mailbox {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_quota_complete_data* result = NULL;
 	char* name = [MailUtil createCharStream:mailbox];
 	int retCode = mailimap_quota_getquotaroot(self.imap, name, &result);
@@ -306,7 +308,7 @@
 
 - (NSInteger)append:(NSData*)message mailbox:(NSString*)mailbox {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized)
+	if (!self.connected || !self.authorized)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailimap_append_simple(self.imap, [MailUtil createCharStream:mailbox], (char*)[message bytes], [message length]);
 	return retCode;
@@ -314,7 +316,7 @@
 
 - (NSData*)fetchMessage:(NSUInteger)index {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	char* result = NULL;
 	NSData* data = nil;
@@ -327,7 +329,7 @@
 
 - (NSData*)fetchHeader:(NSUInteger)index {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	char* result = NULL;
 	NSData* data = nil;
@@ -340,7 +342,7 @@
 
 - (NSNumber*)fetchSize:(NSUInteger)index {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	NSNumber* size = nil;
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_size();
@@ -361,7 +363,7 @@
 
 - (NSData*)fetchText:(NSUInteger)index {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	NSData* data = nil;
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_text();
@@ -382,7 +384,7 @@
 
 - (NSArray*)fetchFlags:(NSUInteger)index {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	NSArray* flags = nil;
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_flags();
@@ -403,7 +405,7 @@
 
 - (NSNumber*)fetchUID:(NSUInteger)index {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	NSNumber* uid = nil;
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_uid();
@@ -424,7 +426,7 @@
 
 - (NSData*)fetchMessageWithUID:(NSUInteger)uid {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	NSData* data = nil;
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822();
@@ -444,7 +446,7 @@
 
 - (NSData*)fetchHeaderWithUID:(NSUInteger)uid {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	NSData* data = nil;
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_header();
@@ -464,7 +466,7 @@
 
 - (NSNumber*)fetchSizeWithUID:(NSUInteger)uid {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	NSNumber* size = nil;
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_size();
@@ -484,7 +486,7 @@
 
 - (NSData*)fetchTextWithUID:(NSUInteger)uid {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	NSData* data = nil;
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_text();
@@ -504,7 +506,7 @@
 
 - (NSArray*)fetchFlagsWithUID:(NSUInteger)uid {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	NSArray* flags = nil;
 	struct mailimap_set* set = mailimap_set_new_single(uid);
@@ -524,7 +526,7 @@
 
 - (NSNumber*)fetchUIDWithUID:(NSUInteger)uid {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	NSNumber* myUid = 0;
 	struct mailimap_set* set = mailimap_set_new_single(uid);
@@ -544,7 +546,7 @@
 
 - (NSArray*)fetchMessagesWithRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822();
@@ -560,7 +562,7 @@
 
 - (NSArray*)fetchHeadersWithRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_header();
@@ -576,7 +578,7 @@
 
 - (NSArray*)fetchSizesWithRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_size();
@@ -592,7 +594,7 @@
 
 - (NSArray*)fetchTextsWithRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_text();
@@ -608,7 +610,7 @@
 
 - (NSArray*)fetchFlagsWithRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_flags();
@@ -624,7 +626,7 @@
 
 - (NSArray*)fetchUIDsWithRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_uid();
@@ -640,7 +642,7 @@
 
 - (NSArray*)fetchMessagesWithUIDRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822();
@@ -656,7 +658,7 @@
 
 - (NSArray*)fetchHeadersWithUIDRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_header();
@@ -672,7 +674,7 @@
 
 - (NSArray*)fetchSizesWithUIDRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_size();
@@ -688,7 +690,7 @@
 
 - (NSArray*)fetchTextsWithUIDRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_rfc822_text();
@@ -704,7 +706,7 @@
 
 - (NSArray*)fetchFlagsWithUIDRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_flags();
@@ -720,7 +722,7 @@
 
 - (NSArray*)fetchUIDsWithUIDRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	struct mailimap_fetch_att* fetch_att = mailimap_fetch_att_new_uid();
@@ -737,7 +739,7 @@
 
 - (NSInteger)store:(NSUInteger)index flag:(ImapStoreFlag)flag enable:(BOOL)enable silent:(BOOL)silent {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_store_att_flags *att_flags = [self createMailFlags:flag enable:enable silent:silent];
 	struct mailimap_set* set = mailimap_set_new_single(index);
@@ -749,7 +751,7 @@
 
 - (NSInteger)storeWithRange:(NSRange)range flag:(ImapStoreFlag)flag enable:(BOOL)enable silent:(BOOL)silent {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_store_att_flags *att_flags = [self createMailFlags:flag enable:enable silent:silent];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
@@ -761,7 +763,7 @@
 
 - (NSInteger)storeWithUID:(NSUInteger)uid flag:(ImapStoreFlag)flag enable:(BOOL)enable silent:(BOOL)silent {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_store_att_flags *att_flags = [self createMailFlags:flag enable:enable silent:silent];
 	struct mailimap_set* set = mailimap_set_new_single(uid);
@@ -773,7 +775,7 @@
 
 - (NSInteger)storeWithUIDRange:(NSRange)range flag:(ImapStoreFlag)flag enable:(BOOL)enable silent:(BOOL)silent {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_store_att_flags *att_flags = [self createMailFlags:flag enable:enable silent:silent];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
@@ -785,7 +787,7 @@
 
 - (NSInteger)copy:(NSUInteger)index mailbox:(NSString*)mailbox {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_single(index);
 	char* name = [MailUtil createCharStream:mailbox];
@@ -796,7 +798,7 @@
 
 - (NSInteger)copyWithRange:(NSRange)range mailbox:(NSString*)mailbox {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	char* name = [MailUtil createCharStream:mailbox];
@@ -807,7 +809,7 @@
 
 - (NSInteger)copyWithUID:(NSUInteger)uid mailbox:(NSString*)mailbox {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_single(uid);
 	char* name = [MailUtil createCharStream:mailbox];
@@ -818,7 +820,7 @@
 
 - (NSInteger)copyWithUIDRange:(NSRange)range mailbox:(NSString*)mailbox {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	char* name = [MailUtil createCharStream:mailbox];
@@ -829,7 +831,7 @@
 
 - (NSInteger)expunge {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailimap_expunge(self.imap);
 	return retCode;
@@ -837,7 +839,7 @@
 
 - (NSInteger)expungeWithUIDRange:(NSRange)range {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_interval(range.location, range.location + range.length);
 	int retCode = mailimap_uid_expunge(self.imap, set);
@@ -847,7 +849,7 @@
 
 - (NSArray*)searchAll {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_all();
 	char* charset = NULL;
@@ -858,7 +860,7 @@
 
 - (NSArray*)searchSeen:(BOOL)checked {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createSeenSearchKey:checked];
 	char* charset = NULL;
@@ -869,7 +871,7 @@
 
 - (NSArray*)searchAnswered:(BOOL)checked {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createAnsweredSearchKey:checked];
 	char* charset = NULL;
@@ -880,7 +882,7 @@
 
 - (NSArray*)searchDeleted:(BOOL)checked {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createDeletedSearchKey:checked];
 	char* charset = NULL;
@@ -891,7 +893,7 @@
 
 - (NSArray*)searchFlagged:(BOOL)checked {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createFlaggedSearchKey:YES];
 	char* charset = NULL;
@@ -902,7 +904,7 @@
 
 - (NSArray*)searchKeyword:(BOOL)checked keyword:(NSString*)keyword {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createKeywordSearchKey:YES keyword:keyword];
 	char* charset = NULL;
@@ -913,7 +915,7 @@
 
 - (NSArray*)searchRecent {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createRecentSearchKey];
 	char* charset = NULL;
@@ -924,7 +926,7 @@
 
 - (NSArray*)searchDraft {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createDraftSearchKey];
 	char* charset = NULL;
@@ -935,7 +937,7 @@
 
 - (NSArray*)searchFrom:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_from([MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -946,7 +948,7 @@
 
 - (NSArray*)searchTo:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_to([MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -957,7 +959,7 @@
 
 - (NSArray*)searchCc:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_cc([MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -968,7 +970,7 @@
 
 - (NSArray*)searchSubject:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_subject([MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -979,7 +981,7 @@
 
 - (NSArray*)searchHeader:(NSString*)header field:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_header([MailUtil createCharStream:header], [MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -990,7 +992,7 @@
 
 - (NSArray*)searchUID:(NSUInteger)uid {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_single(uid);
 	struct mailimap_search_key* key = mailimap_search_key_new_uid(set);
@@ -1002,7 +1004,7 @@
 
 - (NSArray*)searchText:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_text([MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -1013,7 +1015,7 @@
 
 - (NSArray*)uidSearchAll {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_all();
 	char* charset = NULL;
@@ -1024,7 +1026,7 @@
 
 - (NSArray*)uidSearchSeen:(BOOL)checked {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createSeenSearchKey:checked];
 	char* charset = NULL;
@@ -1035,7 +1037,7 @@
 
 - (NSArray*)uidSearchAnswered:(BOOL)checked {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createAnsweredSearchKey:checked];
 	char* charset = NULL;
@@ -1046,7 +1048,7 @@
 
 - (NSArray*)uidSearchDeleted:(BOOL)checked {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createDeletedSearchKey:checked];
 	char* charset = NULL;
@@ -1057,7 +1059,7 @@
 
 - (NSArray*)uidSearchFlagged:(BOOL)checked {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createFlaggedSearchKey:checked];
 	char* charset = NULL;
@@ -1068,7 +1070,7 @@
 
 - (NSArray*)uidSearchKeyword:(BOOL)checked keyword:(NSString *)keyword {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createKeywordSearchKey:checked keyword:keyword];
 	char* charset = NULL;
@@ -1079,7 +1081,7 @@
 
 - (NSArray*)uidSearchRecent {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createRecentSearchKey];
 	char* charset = NULL;
@@ -1090,7 +1092,7 @@
 
 - (NSArray*)uidSearchDraft {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = [self createDraftSearchKey];
 	char* charset = NULL;
@@ -1101,7 +1103,7 @@
 
 - (NSArray*)uidSearchFrom:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_from([MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -1112,7 +1114,7 @@
 
 - (NSArray*)uidSearchTo:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_to([MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -1123,7 +1125,7 @@
 
 - (NSArray*)uidSearchCc:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_cc([MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -1134,7 +1136,7 @@
 
 - (NSArray*)uidSearchSubject:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_subject([MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -1145,7 +1147,7 @@
 
 - (NSArray*)uidSearchHeader:(NSString*)header field:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_header([MailUtil createCharStream:header], [MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -1156,7 +1158,7 @@
 
 - (NSArray*)uidSearchUID:(NSUInteger)uid {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_set* set = mailimap_set_new_single(uid);
 	struct mailimap_search_key* key = mailimap_search_key_new_uid(set);
@@ -1168,7 +1170,7 @@
 
 - (NSArray*)uidSearchText:(NSString*)field {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	struct mailimap_search_key* key = mailimap_search_key_new_text([MailUtil createCharStream:field]);
 	char* charset = NULL;
@@ -1205,7 +1207,7 @@
 
 - (NSInteger)operate:(NSString*)mailbox operation:(ImapOperation)operation {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized)
+	if (!self.connected || !self.authorized)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = MAILIMAP_NO_ERROR;
 	switch (operation) {
@@ -1303,7 +1305,7 @@
 
 - (clist*)fetch:(struct mailimap_fetch_type*)fetch_type set:(struct mailimap_set*)set {
 	assert(self.imap != NULL);
-	if (self.imap->imap_stream == NULL || !self.authorized || !self.selected)
+	if (!self.connected || !self.authorized || !self.selected)
 		@throw [NSError errorWithDomain:@"IMAP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	clist* result = NULL;
 	int retCode = mailimap_uid_fetch(self.imap, set, fetch_type, &result);

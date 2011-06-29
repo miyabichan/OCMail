@@ -46,20 +46,22 @@
 		retCode = mailsmtp_ssl_connect(self.smtp, [self.address cStringUsingEncoding:NSUTF8StringEncoding], self.portNo);
 	else
 		retCode = mailsmtp_socket_connect(self.smtp, [self.address cStringUsingEncoding:NSUTF8StringEncoding], self.portNo);
+	if (retCode == MAILSMTP_NO_ERROR) self.connected = YES;
 	return retCode;
 }
 
 - (NSInteger)disconnect {
 	assert(self.smtp != NULL);
-	if (self.smtp->stream == NULL) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailsmtp_quit(self.smtp);
+	if (retCode == MAILSMTP_NO_ERROR) self.connected = NO;
 	return retCode;
 }
 
 - (NSInteger)startTLS {
 	assert(self.smtp != NULL);
 	if (!self.esmtp) return MAILSMTP_ERROR_NOT_IMPLEMENTED;
-	if (self.smtp->stream == NULL) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailesmtp_starttls(self.smtp);
 	if (retCode == MAILSMTP_NO_ERROR) {
 		mailstream_low* low = mailstream_get_low(self.smtp->stream);
@@ -74,14 +76,14 @@
 
 - (NSInteger)noop {
 	assert(self.smtp != NULL);
-	if (self.smtp->stream == NULL) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailsmtp_noop(self.smtp);
 	return retCode;
 }
 
 - (NSInteger)authServer {
 	assert(self.smtp != NULL && self.mechanism != NONE && self.mechanism != APOP);
-	if (self.smtp->stream == NULL) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	char* userName = [MailUtil createCharStream:self.userName];
 	char* password = [MailUtil createCharStream:self.password];
 	char* address = (char*)[self.address cStringUsingEncoding:NSUTF8StringEncoding];
@@ -106,7 +108,7 @@
 
 - (BOOL)elho {
 	assert(self.smtp != NULL);
-	if (self.smtp->stream == NULL) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailesmtp_ehlo(self.smtp);
 	if (retCode == MAILSMTP_ERROR_NOT_IMPLEMENTED) {
 		self.esmtp = NO;
@@ -118,7 +120,7 @@
 
 - (NSInteger)sendFromAddress:(NSString*)email {
 	assert(self.smtp != NULL);
-	if (self.smtp->stream == NULL) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailsmtp_mail(self.smtp, [email cStringUsingEncoding:NSUTF8StringEncoding]);
 	return retCode;
 }
@@ -134,7 +136,7 @@
 
 - (NSInteger)sendMessage:(NSData*)message {
 	assert(self.smtp != NULL);
-	if (self.smtp->stream == NULL) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailsmtp_data(self.smtp);
 	if (retCode == MAILSMTP_NO_ERROR) {
 		retCode = mailsmtp_data_message(self.smtp, (const char*)[message bytes], (size_t)[message length]);
@@ -147,14 +149,14 @@
 
 - (NSInteger)helo {
 	assert(self.smtp != NULL);
-	if (self.smtp->stream == NULL) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailsmtp_helo(self.smtp);
 	return retCode;
 }
 
 - (NSInteger)sendRecipientAddress:(NSString*)email {
 	assert(self.smtp != NULL);
-	if (self.smtp->stream == NULL) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"SMTP ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailsmtp_rcpt(self.smtp, [email cStringUsingEncoding:NSUTF8StringEncoding]);
 	return retCode;
 }

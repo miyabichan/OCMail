@@ -15,12 +15,11 @@
     
 }
 
-// This function from DINH Viet Hoa
-// See http://article.gmane.org/gmane.mail.libetpan.user/377
-static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_len);
 + (char*)createFillIpPort:(mailstream*)stream;
 + (char*)createCharStream:(NSString*)name;
 + (char*)createMechanism:(AuthMechanism)mechanism;
-
++ (NSString*)encodePersonal:(NSString*)personal encoding:(NSStringEncoding)encoding;
++ (NSString*)decodePersonal:(NSString*)encodedPersonal;
++ (NSString*)createAddress:(NSString*)encodedPersonal;
 
 @end

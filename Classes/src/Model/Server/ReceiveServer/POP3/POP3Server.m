@@ -46,26 +46,28 @@
 		retCode = mailpop3_ssl_connect(self.pop3, [self.address cStringUsingEncoding:NSUTF8StringEncoding], self.portNo);
 	else
 		retCode = mailpop3_socket_connect(self.pop3, [self.address cStringUsingEncoding:NSUTF8StringEncoding], self.portNo);
+	if (retCode == MAILPOP3_NO_ERROR) self.connected = YES;
 	return retCode;
 }
 
 - (NSInteger)disconnect {
 	assert(self.pop3 != NULL);
-	if (self.pop3->pop3_stream == NULL) @throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailpop3_quit(self.pop3);
+	if (retCode == MAILPOP3_NO_ERROR) self.connected = NO;
 	return retCode;
 }
 
 - (NSInteger)startTLS {
 	assert(self.pop3 != NULL);
-	if (self.pop3->pop3_stream == NULL) @throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailpop3_socket_starttls(self.pop3);
 	return retCode;
 }
 
 - (NSInteger)noop {
 	assert(self.pop3 != NULL);
-	if (self.pop3->pop3_stream == NULL || !self.authorized)
+	if (!self.connected || !self.authorized)
 		@throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailpop3_noop(self.pop3);
 	return retCode;
@@ -73,7 +75,7 @@
 
 - (NSInteger)authServer {
 	assert(self.pop3 != NULL);
-	if (self.pop3->pop3_stream == NULL) @throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	char* userName = [MailUtil createCharStream:self.userName];
 	char* password = [MailUtil createCharStream:self.password];
 	char* address = (char*)[self.address cStringUsingEncoding:NSUTF8StringEncoding];
@@ -139,7 +141,7 @@
 
 - (NSInteger)delete:(NSUInteger)index {
 	assert(self.pop3 != NULL);
-	if (self.pop3->pop3_stream == NULL || !self.authorized)
+	if (!self.connected || !self.authorized)
 		@throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailpop3_dele(self.pop3, index);
 	return retCode;
@@ -147,7 +149,7 @@
 
 - (NSInteger)reset {
 	assert(self.pop3 != NULL);
-	if (self.pop3->pop3_stream == NULL || !self.authorized)
+	if (!self.connected || !self.authorized)
 		@throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	int retCode = mailpop3_rset(self.pop3);
 	return retCode;
@@ -155,7 +157,7 @@
 
 - (NSArray*)capability {
 	assert(self.pop3 != NULL);
-	if (self.pop3->pop3_stream == NULL) @throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
+	if (!self.connected) @throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	clist* capa_list = NULL;
 	NSMutableArray* capas = [NSMutableArray array];
 	int retCode = mailpop3_capa(self.pop3, &capa_list);
@@ -198,7 +200,7 @@
 
 - (carray*)createCArray {
 	assert(self.pop3 != NULL);
-	if (self.pop3->pop3_stream == NULL || !self.authorized)
+	if (!self.connected || !self.authorized)
 		@throw [NSError errorWithDomain:@"POP3 ERROR" code:ILLEGAL_OPERATION userInfo:nil];
 	carray* mails = NULL;
 	mailpop3_list(self.pop3, &mails);

@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SMTPServer.h"
+#import "InternetAddress.h"
+#import "MailOperator.h"
 
 
 @interface Account : NSObject {
 @private
-	NSString* name_;
-	SMTPServer* smtpServer_;
+	InternetAddress* address_;
+	MailOperator* mailOperator_;
 }
 
 @end

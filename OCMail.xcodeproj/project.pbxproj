@@ -67,6 +67,14 @@
 		88210E2613865B0500B89BB8 /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
 		88210E2713865B0500B89BB8 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B43137B848E00C45F6A /* NSString+Util.m */; };
 		88210E2813865B0500B89BB8 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B45137B848E00C45F6A /* UIImage+Util.m */; };
+		88299ABB13B826FB000C5E44 /* MailOperator.h in Headers */ = {isa = PBXBuildFile; fileRef = 88299AB913B826FB000C5E44 /* MailOperator.h */; };
+		88299ABC13B826FB000C5E44 /* MailOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ABA13B826FB000C5E44 /* MailOperator.m */; };
+		88299AC013B82796000C5E44 /* MimeBody.h in Headers */ = {isa = PBXBuildFile; fileRef = 88299ABE13B82796000C5E44 /* MimeBody.h */; };
+		88299AC113B82796000C5E44 /* MimeBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ABF13B82796000C5E44 /* MimeBody.m */; };
+		88299AC513B827ED000C5E44 /* MimeMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 88299AC313B827ED000C5E44 /* MimeMessage.h */; };
+		88299AC613B827ED000C5E44 /* MimeMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299AC413B827ED000C5E44 /* MimeMessage.m */; };
+		88299ACB13B84D9A000C5E44 /* BodyPart.h in Headers */ = {isa = PBXBuildFile; fileRef = 88299AC913B84D9A000C5E44 /* BodyPart.h */; };
+		88299ACC13B84D9A000C5E44 /* BodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ACA13B84D9A000C5E44 /* BodyPart.m */; };
 		884BB4CC13838B62007468F8 /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
 		884BB4CE13838B62007468F8 /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
 		885A6BA11389EF8400F1CE9D /* MailUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 885A6B9F1389EF8400F1CE9D /* MailUtil.m */; };
@@ -74,6 +82,21 @@
 		885A6BA31389EF8400F1CE9D /* MailUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 885A6B9F1389EF8400F1CE9D /* MailUtil.m */; };
 		88614D6F1383BE50007D046A /* POP3Server.h in Headers */ = {isa = PBXBuildFile; fileRef = 88614D6D1383BE50007D046A /* POP3Server.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88614D701383BE50007D046A /* POP3Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 88614D6E1383BE50007D046A /* POP3Server.m */; };
+		8867299313BAA88C0018F4A0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E431339C24C0044FAF2 /* UIKit.framework */; };
+		8867299413BAA88C0018F4A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E451339C24C0044FAF2 /* Foundation.framework */; };
+		8867299513BAA88C0018F4A0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E471339C24C0044FAF2 /* CoreGraphics.framework */; };
+		886729A413BAA8CA0018F4A0 /* InternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8D1D113B963110042D9EA /* InternetAddress.m */; };
+		886729A513BAA8DE0018F4A0 /* NSArray+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B3F137B848E00C45F6A /* NSArray+Util.m */; };
+		886729A613BAA8DE0018F4A0 /* NSData+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B41137B848E00C45F6A /* NSData+Util.m */; };
+		886729A713BAA8DE0018F4A0 /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
+		886729A813BAA8DE0018F4A0 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B43137B848E00C45F6A /* NSString+Util.m */; };
+		886729A913BAA8DE0018F4A0 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B45137B848E00C45F6A /* UIImage+Util.m */; };
+		886729AA13BAA8E70018F4A0 /* MailUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 885A6B9F1389EF8400F1CE9D /* MailUtil.m */; };
+		886729AD13BAAA620018F4A0 /* InternetAddressTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 886729AC13BAAA620018F4A0 /* InternetAddressTest.m */; };
+		886729AE13BAABAE0018F4A0 /* libOCHamcrest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06EAE1339CABD0044FAF2 /* libOCHamcrest.a */; };
+		886729AF13BAABAE0018F4A0 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06EB81339CAC80044FAF2 /* libOCMock.a */; };
+		886729B013BAABB50018F4A0 /* libetpan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 886C8AA1137B544C00C45F6A /* libetpan.a */; };
+		886729B113BAABB60018F4A0 /* libetpan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 886C8AA1137B544C00C45F6A /* libetpan.a */; };
 		886C8AEE137B6D6800C45F6A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E431339C24C0044FAF2 /* UIKit.framework */; };
 		886C8AEF137B6D6800C45F6A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E451339C24C0044FAF2 /* Foundation.framework */; };
 		886C8AF0137B6D6800C45F6A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E471339C24C0044FAF2 /* CoreGraphics.framework */; };
@@ -87,6 +110,33 @@
 		886C8B4B137B848E00C45F6A /* NSData+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B41137B848E00C45F6A /* NSData+Util.m */; };
 		886C8B4E137B848E00C45F6A /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B43137B848E00C45F6A /* NSString+Util.m */; };
 		886C8B51137B848E00C45F6A /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B45137B848E00C45F6A /* UIImage+Util.m */; };
+		88E8D1D213B963110042D9EA /* InternetAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 88E8D1D013B963110042D9EA /* InternetAddress.h */; };
+		88E8D1D313B963110042D9EA /* InternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8D1D113B963110042D9EA /* InternetAddress.m */; };
+		88E8D1F213B9AE8A0042D9EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E431339C24C0044FAF2 /* UIKit.framework */; };
+		88E8D1F313B9AE8A0042D9EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E451339C24C0044FAF2 /* Foundation.framework */; };
+		88E8D1F413B9AE8A0042D9EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E471339C24C0044FAF2 /* CoreGraphics.framework */; };
+		88E8D20713B9AF520042D9EA /* NSData+UtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8D20413B9AF480042D9EA /* NSData+UtilTest.m */; };
+		88E8D20813B9B06C0042D9EA /* libOCHamcrest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06EAE1339CABD0044FAF2 /* libOCHamcrest.a */; };
+		88E8D20913B9B0700042D9EA /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06EB81339CAC80044FAF2 /* libOCMock.a */; };
+		88E8D20A13B9B0740042D9EA /* NSData+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B41137B848E00C45F6A /* NSData+Util.m */; };
+		88E8D20B13B9B0770042D9EA /* NSArray+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B3F137B848E00C45F6A /* NSArray+Util.m */; };
+		88E8D20C13B9B07D0042D9EA /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
+		88E8D20D13B9B0800042D9EA /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B43137B848E00C45F6A /* NSString+Util.m */; };
+		88E8D20E13B9B0820042D9EA /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B45137B848E00C45F6A /* UIImage+Util.m */; };
+		88E8D21113B9BED90042D9EA /* NSString+UtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8D21013B9BED90042D9EA /* NSString+UtilTest.m */; };
+		88E8D21913B9D5BC0042D9EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E431339C24C0044FAF2 /* UIKit.framework */; };
+		88E8D21A13B9D5BC0042D9EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E451339C24C0044FAF2 /* Foundation.framework */; };
+		88E8D21B13B9D5BC0042D9EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E471339C24C0044FAF2 /* CoreGraphics.framework */; };
+		88E8D22A13B9D5E90042D9EA /* NSArray+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B3F137B848E00C45F6A /* NSArray+Util.m */; };
+		88E8D22B13B9D5E90042D9EA /* NSData+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B41137B848E00C45F6A /* NSData+Util.m */; };
+		88E8D22C13B9D5E90042D9EA /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
+		88E8D22D13B9D5E90042D9EA /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B43137B848E00C45F6A /* NSString+Util.m */; };
+		88E8D22E13B9D5E90042D9EA /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B45137B848E00C45F6A /* UIImage+Util.m */; };
+		88E8D22F13B9D5E90042D9EA /* MailUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 885A6B9F1389EF8400F1CE9D /* MailUtil.m */; };
+		88E8D23213B9D6A10042D9EA /* MailUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8D23113B9D6A10042D9EA /* MailUtilTest.m */; };
+		88E8D23313B9D7660042D9EA /* libetpan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 886C8AA1137B544C00C45F6A /* libetpan.a */; };
+		88E8D23413B9D7660042D9EA /* libOCHamcrest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06EAE1339CABD0044FAF2 /* libOCHamcrest.a */; };
+		88E8D23513B9D7660042D9EA /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06EB81339CAC80044FAF2 /* libOCMock.a */; };
 		88F3BFD21395CA7100C6E934 /* Categories.h in Headers */ = {isa = PBXBuildFile; fileRef = 886C8B3D137B848E00C45F6A /* Categories.h */; settings = {ATTRIBUTES = (); }; };
 		88F3BFD31395CA7100C6E934 /* NSArray+Util.h in Headers */ = {isa = PBXBuildFile; fileRef = 886C8B3E137B848E00C45F6A /* NSArray+Util.h */; settings = {ATTRIBUTES = (); }; };
 		88F3BFD41395CA7100C6E934 /* NSData+Util.h in Headers */ = {isa = PBXBuildFile; fileRef = 886C8B40137B848E00C45F6A /* NSData+Util.h */; settings = {ATTRIBUTES = (); }; };
@@ -109,12 +159,23 @@
 		88282720134DBA6F00D215CB /* MailServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailServer.h; sourceTree = "<group>"; };
 		88282721134DBA6F00D215CB /* MailServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailServer.m; sourceTree = "<group>"; };
 		88282722134DBA6F00D215CB /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		88299AB913B826FB000C5E44 /* MailOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MailOperator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		88299ABA13B826FB000C5E44 /* MailOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MailOperator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		88299ABE13B82796000C5E44 /* MimeBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = MimeBody.h; path = ../MimeBody/MimeBody.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		88299ABF13B82796000C5E44 /* MimeBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MimeBody.m; path = ../MimeBody/MimeBody.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		88299AC313B827ED000C5E44 /* MimeMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MimeMessage.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		88299AC413B827ED000C5E44 /* MimeMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MimeMessage.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		88299AC913B84D9A000C5E44 /* BodyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPart.h; sourceTree = "<group>"; };
+		88299ACA13B84D9A000C5E44 /* BodyPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPart.m; sourceTree = "<group>"; };
 		884BB4C913838B62007468F8 /* NSDate+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Util.h"; sourceTree = "<group>"; };
 		884BB4CA13838B62007468F8 /* NSDate+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Util.m"; sourceTree = "<group>"; };
 		885A6B9E1389EF8400F1CE9D /* MailUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailUtil.h; sourceTree = "<group>"; };
 		885A6B9F1389EF8400F1CE9D /* MailUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailUtil.m; sourceTree = "<group>"; };
 		88614D6D1383BE50007D046A /* POP3Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POP3Server.h; sourceTree = "<group>"; };
 		88614D6E1383BE50007D046A /* POP3Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POP3Server.m; sourceTree = "<group>"; };
+		8867299213BAA88C0018F4A0 /* ModelTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		886729AB13BAAA620018F4A0 /* InternetAddressTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetAddressTest.h; sourceTree = "<group>"; };
+		886729AC13BAAA620018F4A0 /* InternetAddressTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetAddressTest.m; sourceTree = "<group>"; };
 		886C8A14137B543700C45F6A /* acl_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = acl_types.h; sourceTree = "<group>"; };
 		886C8A15137B543700C45F6A /* acl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = acl.h; sourceTree = "<group>"; };
 		886C8A16137B543700C45F6A /* annotatemore_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = annotatemore_types.h; sourceTree = "<group>"; };
@@ -343,6 +404,16 @@
 		88E06EB61339CAC80044FAF2 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		88E06EB71339CAC80044FAF2 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		88E06EB81339CAC80044FAF2 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		88E8D1D013B963110042D9EA /* InternetAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetAddress.h; sourceTree = "<group>"; };
+		88E8D1D113B963110042D9EA /* InternetAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetAddress.m; sourceTree = "<group>"; };
+		88E8D1F113B9AE8A0042D9EA /* CategoriesTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CategoriesTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88E8D20313B9AF480042D9EA /* NSData+UtilTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+UtilTest.h"; sourceTree = "<group>"; };
+		88E8D20413B9AF480042D9EA /* NSData+UtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+UtilTest.m"; sourceTree = "<group>"; };
+		88E8D20F13B9BED90042D9EA /* NSString+UtilTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UtilTest.h"; sourceTree = "<group>"; };
+		88E8D21013B9BED90042D9EA /* NSString+UtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UtilTest.m"; sourceTree = "<group>"; };
+		88E8D21813B9D5BC0042D9EA /* UtilitiesTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UtilitiesTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88E8D23013B9D6A10042D9EA /* MailUtilTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailUtilTest.h; sourceTree = "<group>"; };
+		88E8D23113B9D6A10042D9EA /* MailUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailUtilTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +452,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8867298E13BAA88C0018F4A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8867299313BAA88C0018F4A0 /* UIKit.framework in Frameworks */,
+				8867299413BAA88C0018F4A0 /* Foundation.framework in Frameworks */,
+				8867299513BAA88C0018F4A0 /* CoreGraphics.framework in Frameworks */,
+				886729AE13BAABAE0018F4A0 /* libOCHamcrest.a in Frameworks */,
+				886729AF13BAABAE0018F4A0 /* libOCMock.a in Frameworks */,
+				886729B113BAABB60018F4A0 /* libetpan.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		886C8AE9137B6D6800C45F6A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -391,6 +475,32 @@
 				886C8B09137B718A00C45F6A /* libetpan.a in Frameworks */,
 				886C8B0A137B719600C45F6A /* libOCHamcrest.a in Frameworks */,
 				886C8B0B137B719600C45F6A /* libOCMock.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E8D1ED13B9AE8A0042D9EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88E8D1F213B9AE8A0042D9EA /* UIKit.framework in Frameworks */,
+				88E8D1F313B9AE8A0042D9EA /* Foundation.framework in Frameworks */,
+				88E8D1F413B9AE8A0042D9EA /* CoreGraphics.framework in Frameworks */,
+				88E8D20813B9B06C0042D9EA /* libOCHamcrest.a in Frameworks */,
+				88E8D20913B9B0700042D9EA /* libOCMock.a in Frameworks */,
+				886729B013BAABB50018F4A0 /* libetpan.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E8D21413B9D5BC0042D9EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88E8D21913B9D5BC0042D9EA /* UIKit.framework in Frameworks */,
+				88E8D21A13B9D5BC0042D9EA /* Foundation.framework in Frameworks */,
+				88E8D21B13B9D5BC0042D9EA /* CoreGraphics.framework in Frameworks */,
+				88E8D23313B9D7660042D9EA /* libetpan.a in Frameworks */,
+				88E8D23413B9D7660042D9EA /* libOCHamcrest.a in Frameworks */,
+				88E8D23513B9D7660042D9EA /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,14 +535,68 @@
 		8828271B134DBA6F00D215CB /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				88A4D054134E8DD4003CCB75 /* IMAP */,
-				88A4D056134E8DEA003CCB75 /* POP3 */,
-				88A4D055134E8DDC003CCB75 /* SMTP */,
+				88B8F7B813B453150016012E /* ReceiveServer */,
+				88B8F7BA13B4532E0016012E /* SendServer */,
 				88282720134DBA6F00D215CB /* MailServer.h */,
 				88282721134DBA6F00D215CB /* MailServer.m */,
 				88282722134DBA6F00D215CB /* Server.h */,
 			);
 			path = Server;
+			sourceTree = "<group>";
+		};
+		88299AB313B823FD000C5E44 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				88299AC813B84D85000C5E44 /* BodyPart */,
+				88299ABD13B8274B000C5E44 /* MimeBody */,
+				88299AC213B827B6000C5E44 /* MimeMessage */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		88299AB513B82418000C5E44 /* Operator */ = {
+			isa = PBXGroup;
+			children = (
+				88299AB813B8268B000C5E44 /* MailOperator */,
+			);
+			path = Operator;
+			sourceTree = "<group>";
+		};
+		88299AB813B8268B000C5E44 /* MailOperator */ = {
+			isa = PBXGroup;
+			children = (
+				88299AB913B826FB000C5E44 /* MailOperator.h */,
+				88299ABA13B826FB000C5E44 /* MailOperator.m */,
+			);
+			path = MailOperator;
+			sourceTree = "<group>";
+		};
+		88299ABD13B8274B000C5E44 /* MimeBody */ = {
+			isa = PBXGroup;
+			children = (
+				88299ABE13B82796000C5E44 /* MimeBody.h */,
+				88299ABF13B82796000C5E44 /* MimeBody.m */,
+			);
+			name = MimeBody;
+			path = MimeMessage;
+			sourceTree = "<group>";
+		};
+		88299AC213B827B6000C5E44 /* MimeMessage */ = {
+			isa = PBXGroup;
+			children = (
+				88299AC313B827ED000C5E44 /* MimeMessage.h */,
+				88299AC413B827ED000C5E44 /* MimeMessage.m */,
+			);
+			path = MimeMessage;
+			sourceTree = "<group>";
+		};
+		88299AC813B84D85000C5E44 /* BodyPart */ = {
+			isa = PBXGroup;
+			children = (
+				88299AC913B84D9A000C5E44 /* BodyPart.h */,
+				88299ACA13B84D9A000C5E44 /* BodyPart.m */,
+			);
+			path = BodyPart;
 			sourceTree = "<group>";
 		};
 		885A6B9C1389EF4E00F1CE9D /* Utilities */ = {
@@ -442,6 +606,15 @@
 				885A6B9F1389EF8400F1CE9D /* MailUtil.m */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		8867298B13BAA84B0018F4A0 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				886729AB13BAAA620018F4A0 /* InternetAddressTest.h */,
+				886729AC13BAAA620018F4A0 /* InternetAddressTest.m */,
+			);
+			path = Address;
 			sourceTree = "<group>";
 		};
 		886C8A0E137B53B300C45F6A /* SASL */ = {
@@ -697,6 +870,7 @@
 		88A4D057134E8EFE003CCB75 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8867298B13BAA84B0018F4A0 /* Address */,
 				88A4D058134E8F20003CCB75 /* Server */,
 			);
 			path = Model;
@@ -715,10 +889,30 @@
 			path = Server;
 			sourceTree = "<group>";
 		};
+		88B8F7B813B453150016012E /* ReceiveServer */ = {
+			isa = PBXGroup;
+			children = (
+				88A4D054134E8DD4003CCB75 /* IMAP */,
+				88A4D056134E8DEA003CCB75 /* POP3 */,
+			);
+			path = ReceiveServer;
+			sourceTree = "<group>";
+		};
+		88B8F7BA13B4532E0016012E /* SendServer */ = {
+			isa = PBXGroup;
+			children = (
+				88A4D055134E8DDC003CCB75 /* SMTP */,
+			);
+			path = SendServer;
+			sourceTree = "<group>";
+		};
 		88C303A3134AF38A00F63430 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				88C303B7134AF7F600F63430 /* Account */,
+				88E8D1CE13B95FA30042D9EA /* Address */,
+				88299AB313B823FD000C5E44 /* Message */,
+				88299AB513B82418000C5E44 /* Operator */,
 				8828271B134DBA6F00D215CB /* Server */,
 			);
 			path = Model;
@@ -749,6 +943,9 @@
 				881D977813821753009CB8B5 /* libOCMail.a */,
 				881A69221385EDAB0005CEC6 /* POP3Test.octest */,
 				88149BAE138B550600B16002 /* IMAPServerTest.octest */,
+				88E8D1F113B9AE8A0042D9EA /* CategoriesTest.octest */,
+				88E8D21813B9D5BC0042D9EA /* UtilitiesTest.octest */,
+				8867299213BAA88C0018F4A0 /* ModelTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -791,7 +988,9 @@
 		88E06E641339C93C0044FAF2 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				88E8D1EB13B9AE640042D9EA /* Categories */,
 				88A4D057134E8EFE003CCB75 /* Model */,
+				88E8D21213B9D58E0042D9EA /* Utilities */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -905,6 +1104,35 @@
 			path = OCMock;
 			sourceTree = "<group>";
 		};
+		88E8D1CE13B95FA30042D9EA /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				88E8D1D013B963110042D9EA /* InternetAddress.h */,
+				88E8D1D113B963110042D9EA /* InternetAddress.m */,
+			);
+			path = Address;
+			sourceTree = "<group>";
+		};
+		88E8D1EB13B9AE640042D9EA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				88E8D20313B9AF480042D9EA /* NSData+UtilTest.h */,
+				88E8D20413B9AF480042D9EA /* NSData+UtilTest.m */,
+				88E8D20F13B9BED90042D9EA /* NSString+UtilTest.h */,
+				88E8D21013B9BED90042D9EA /* NSString+UtilTest.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		88E8D21213B9D58E0042D9EA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				88E8D23013B9D6A10042D9EA /* MailUtilTest.h */,
+				88E8D23113B9D6A10042D9EA /* MailUtilTest.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -926,6 +1154,11 @@
 				88F3BFD51395CA7100C6E934 /* NSDate+Util.h in Headers */,
 				88F3BFD61395CA7100C6E934 /* NSString+Util.h in Headers */,
 				88F3BFD71395CA7100C6E934 /* UIImage+Util.h in Headers */,
+				88299ABB13B826FB000C5E44 /* MailOperator.h in Headers */,
+				88299AC013B82796000C5E44 /* MimeBody.h in Headers */,
+				88299AC513B827ED000C5E44 /* MimeMessage.h in Headers */,
+				88299ACB13B84D9A000C5E44 /* BodyPart.h in Headers */,
+				88E8D1D213B963110042D9EA /* InternetAddress.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -986,6 +1219,24 @@
 			productReference = 881D977813821753009CB8B5 /* libOCMail.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		8867299113BAA88C0018F4A0 /* ModelTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 886729A113BAA88C0018F4A0 /* Build configuration list for PBXNativeTarget "ModelTest" */;
+			buildPhases = (
+				8867298D13BAA88C0018F4A0 /* Sources */,
+				8867298E13BAA88C0018F4A0 /* Frameworks */,
+				8867298F13BAA88C0018F4A0 /* Resources */,
+				8867299013BAA88C0018F4A0 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ModelTest;
+			productName = ModelTest;
+			productReference = 8867299213BAA88C0018F4A0 /* ModelTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		886C8AEC137B6D6800C45F6A /* SMTPServerTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 886C8AFC137B6D6800C45F6A /* Build configuration list for PBXNativeTarget "SMTPServerTest" */;
@@ -1002,6 +1253,42 @@
 			name = SMTPServerTest;
 			productName = SMTPServerTest;
 			productReference = 886C8AED137B6D6800C45F6A /* SMTPServerTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		88E8D1F013B9AE8A0042D9EA /* CategoriesTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88E8D20013B9AE8B0042D9EA /* Build configuration list for PBXNativeTarget "CategoriesTest" */;
+			buildPhases = (
+				88E8D1EC13B9AE8A0042D9EA /* Sources */,
+				88E8D1ED13B9AE8A0042D9EA /* Frameworks */,
+				88E8D1EE13B9AE8A0042D9EA /* Resources */,
+				88E8D1EF13B9AE8A0042D9EA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CategoriesTest;
+			productName = CategoriesTest;
+			productReference = 88E8D1F113B9AE8A0042D9EA /* CategoriesTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		88E8D21713B9D5BC0042D9EA /* UtilitiesTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88E8D22713B9D5BD0042D9EA /* Build configuration list for PBXNativeTarget "UtilitiesTest" */;
+			buildPhases = (
+				88E8D21313B9D5BC0042D9EA /* Sources */,
+				88E8D21413B9D5BC0042D9EA /* Frameworks */,
+				88E8D21513B9D5BC0042D9EA /* Resources */,
+				88E8D21613B9D5BC0042D9EA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UtilitiesTest;
+			productName = UtilitiesTest;
+			productReference = 88E8D21813B9D5BC0042D9EA /* UtilitiesTest.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -1022,9 +1309,12 @@
 			projectRoot = "";
 			targets = (
 				881D977713821753009CB8B5 /* OCMail-iOS */,
+				88E8D1F013B9AE8A0042D9EA /* CategoriesTest */,
+				8867299113BAA88C0018F4A0 /* ModelTest */,
 				88149BAD138B550600B16002 /* IMAPServerTest */,
 				881A69211385EDAB0005CEC6 /* POP3Test */,
 				886C8AEC137B6D6800C45F6A /* SMTPServerTest */,
+				88E8D21713B9D5BC0042D9EA /* UtilitiesTest */,
 				88F3BFEC1395CEA400C6E934 /* OCMail-iOSUniversal */,
 			);
 		};
@@ -1045,7 +1335,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8867298F13BAA88C0018F4A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		886C8AEA137B6D6800C45F6A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E8D1EE13B9AE8A0042D9EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E8D21513B9D5BC0042D9EA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1081,7 +1392,46 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		8867299013BAA88C0018F4A0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		886C8AEB137B6D6800C45F6A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		88E8D1EF13B9AE8A0042D9EA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		88E8D21613B9D5BC0042D9EA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1186,6 +1536,26 @@
 				88614D701383BE50007D046A /* POP3Server.m in Sources */,
 				885A6BA11389EF8400F1CE9D /* MailUtil.m in Sources */,
 				88149BA7138B4B5600B16002 /* IMAPServer.m in Sources */,
+				88299ABC13B826FB000C5E44 /* MailOperator.m in Sources */,
+				88299AC113B82796000C5E44 /* MimeBody.m in Sources */,
+				88299AC613B827ED000C5E44 /* MimeMessage.m in Sources */,
+				88299ACC13B84D9A000C5E44 /* BodyPart.m in Sources */,
+				88E8D1D313B963110042D9EA /* InternetAddress.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8867298D13BAA88C0018F4A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				886729A413BAA8CA0018F4A0 /* InternetAddress.m in Sources */,
+				886729A513BAA8DE0018F4A0 /* NSArray+Util.m in Sources */,
+				886729A613BAA8DE0018F4A0 /* NSData+Util.m in Sources */,
+				886729A713BAA8DE0018F4A0 /* NSDate+Util.m in Sources */,
+				886729A813BAA8DE0018F4A0 /* NSString+Util.m in Sources */,
+				886729A913BAA8DE0018F4A0 /* UIImage+Util.m in Sources */,
+				886729AA13BAA8E70018F4A0 /* MailUtil.m in Sources */,
+				886729AD13BAAA620018F4A0 /* InternetAddressTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1202,6 +1572,34 @@
 				886C8B51137B848E00C45F6A /* UIImage+Util.m in Sources */,
 				884BB4CE13838B62007468F8 /* NSDate+Util.m in Sources */,
 				885A6BA31389EF8400F1CE9D /* MailUtil.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E8D1EC13B9AE8A0042D9EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88E8D20713B9AF520042D9EA /* NSData+UtilTest.m in Sources */,
+				88E8D20A13B9B0740042D9EA /* NSData+Util.m in Sources */,
+				88E8D20B13B9B0770042D9EA /* NSArray+Util.m in Sources */,
+				88E8D20C13B9B07D0042D9EA /* NSDate+Util.m in Sources */,
+				88E8D20D13B9B0800042D9EA /* NSString+Util.m in Sources */,
+				88E8D20E13B9B0820042D9EA /* UIImage+Util.m in Sources */,
+				88E8D21113B9BED90042D9EA /* NSString+UtilTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E8D21313B9D5BC0042D9EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88E8D22A13B9D5E90042D9EA /* NSArray+Util.m in Sources */,
+				88E8D22B13B9D5E90042D9EA /* NSData+Util.m in Sources */,
+				88E8D22C13B9D5E90042D9EA /* NSDate+Util.m in Sources */,
+				88E8D22D13B9D5E90042D9EA /* NSString+Util.m in Sources */,
+				88E8D22E13B9D5E90042D9EA /* UIImage+Util.m in Sources */,
+				88E8D22F13B9D5E90042D9EA /* MailUtil.m in Sources */,
+				88E8D23213B9D6A10042D9EA /* MailUtilTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1444,6 +1842,98 @@
 			};
 			name = Release;
 		};
+		886729A213BAA88C0018F4A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Frameworks/OCHamcrest/Headers\"",
+					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
+					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/libetpan\"",
+					"\"$(SRCROOT)/Frameworks/OCHamcrest\"",
+					"\"$(SRCROOT)/Frameworks/OCMock\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-all_load",
+					"-lstdc++",
+					"-lgcov",
+					"-ObjC",
+					"-lz",
+					"-liconv.2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		886729A313BAA88C0018F4A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Frameworks/OCHamcrest/Headers\"",
+					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
+					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/libetpan\"",
+					"\"$(SRCROOT)/Frameworks/OCHamcrest\"",
+					"\"$(SRCROOT)/Frameworks/OCMock\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-all_load",
+					"-lstdc++",
+					"-lgcov",
+					"-ObjC",
+					"-lz",
+					"-liconv.2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		886C8AFD137B6D6800C45F6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1576,6 +2066,188 @@
 			};
 			name = Release;
 		};
+		88E8D20113B9AE8B0042D9EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Frameworks/OCHamcrest/Headers\"",
+					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
+					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/libetpan\"",
+					"\"$(SRCROOT)/Frameworks/OCHamcrest\"",
+					"\"$(SRCROOT)/Frameworks/OCMock\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-all_load",
+					"-lstdc++",
+					"-lgcov",
+					"-ObjC",
+					"-lz",
+					"-liconv.2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		88E8D20213B9AE8B0042D9EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Frameworks/OCHamcrest/Headers\"",
+					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
+					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/libetpan\"",
+					"\"$(SRCROOT)/Frameworks/OCHamcrest\"",
+					"\"$(SRCROOT)/Frameworks/OCMock\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-all_load",
+					"-lstdc++",
+					"-lgcov",
+					"-ObjC",
+					"-lz",
+					"-liconv.2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		88E8D22813B9D5BD0042D9EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Frameworks/OCHamcrest/Headers\"",
+					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
+					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/libetpan\"",
+					"\"$(SRCROOT)/Frameworks/OCHamcrest\"",
+					"\"$(SRCROOT)/Frameworks/OCMock\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-all_load",
+					"-lstdc++",
+					"-lgcov",
+					"-ObjC",
+					"-lz",
+					"-liconv.2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		88E8D22913B9D5BD0042D9EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Frameworks/OCHamcrest/Headers\"",
+					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
+					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/libetpan\"",
+					"\"$(SRCROOT)/Frameworks/OCHamcrest\"",
+					"\"$(SRCROOT)/Frameworks/OCMock\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-all_load",
+					"-lstdc++",
+					"-lgcov",
+					"-ObjC",
+					"-lz",
+					"-liconv.2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		88F3BFEE1395CEA400C6E934 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1620,6 +2292,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		886729A113BAA88C0018F4A0 /* Build configuration list for PBXNativeTarget "ModelTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				886729A213BAA88C0018F4A0 /* Debug */,
+				886729A313BAA88C0018F4A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		886C8AFC137B6D6800C45F6A /* Build configuration list for PBXNativeTarget "SMTPServerTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1634,6 +2315,24 @@
 			buildConfigurations = (
 				88E06E5D1339C24C0044FAF2 /* Debug */,
 				88E06E5E1339C24C0044FAF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88E8D20013B9AE8B0042D9EA /* Build configuration list for PBXNativeTarget "CategoriesTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88E8D20113B9AE8B0042D9EA /* Debug */,
+				88E8D20213B9AE8B0042D9EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88E8D22713B9D5BD0042D9EA /* Build configuration list for PBXNativeTarget "UtilitiesTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88E8D22813B9D5BD0042D9EA /* Debug */,
+				88E8D22913B9D5BD0042D9EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

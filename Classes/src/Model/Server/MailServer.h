@@ -18,6 +18,7 @@
 	NSUInteger portNo_;
 	BOOL ssl_;
 	AuthMechanism mechanism_;
+	BOOL connected_;
 	BOOL authorized_;
 }
 
@@ -27,6 +28,7 @@
 @property (nonatomic, assign) NSUInteger portNo;
 @property (nonatomic, assign) BOOL ssl;
 @property (nonatomic, assign) AuthMechanism mechanism;
+@property (nonatomic, assign) BOOL connected;
 @property (nonatomic, assign) BOOL authorized;
 
 - (NSInteger)connect;

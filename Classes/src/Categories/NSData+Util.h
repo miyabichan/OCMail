@@ -13,4 +13,8 @@
 
 + (BOOL)isEmpty:(NSData*)data;
 
++ (NSData*)base64Encode:(NSString*)string encoding:(NSStringEncoding)encoding;
+
++ (NSData*)base64Decode:(NSString*)base64;
+
 @end
