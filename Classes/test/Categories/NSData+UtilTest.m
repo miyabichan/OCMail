@@ -19,6 +19,13 @@
 	[super tearDown];
 }
 
+- (void)testIsEmpty {
+	NSString* text = @"あいうえおかきくけこ";
+	NSData* data = [text dataUsingEncoding:NSUTF8StringEncoding];
+	assertThatBool([NSData isEmpty:data], equalToBool(NO));
+	NSLog(@"data: %s", [data bytes]);
+}
+
 - (void)testBase64Encode {
 	NSString* string = @"あいうえおかきくけこさしすせそたちつてとなにぬねの";
 	NSData* data = [NSData base64Encode:string encoding:NSUTF8StringEncoding];
