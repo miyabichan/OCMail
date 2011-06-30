@@ -200,21 +200,21 @@ static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_
 	return personal;
 }
 
-+ (NSString*)createAddress:(NSString*)encodedPersonal {
++ (NSString*)createAddress:(NSString*)encodedAddress {
 	NSString* const singlePattern = @"^[[:alnum:]._-]+@[[:alnum:]_-]+\\.[[:alnum:]._-]+$";
 	NSString* const mixedPattern = @"<[[:alnum:]._-]+@[[:alnum:]_-]+\\.[[:alnum:]._-]+>$";
 
 	NSString* address = nil;
 	
 	NSRegularExpression* regExp = [self createRegExp:singlePattern];
-	NSUInteger matchCount = [regExp numberOfMatchesInString:encodedPersonal options:0 range:NSMakeRange(0, [encodedPersonal length])];
+	NSUInteger matchCount = [regExp numberOfMatchesInString:encodedAddress options:0 range:NSMakeRange(0, [encodedAddress length])];
 	if (matchCount > 0) {
-		address = [self createAddress:encodedPersonal regExp:regExp bracketed:NO];
+		address = [self createAddress:encodedAddress regExp:regExp bracketed:NO];
 	} else {
 		regExp = [self createRegExp:mixedPattern];
-		matchCount = [regExp numberOfMatchesInString:encodedPersonal options:0 range:NSMakeRange(0, [encodedPersonal length])];
+		matchCount = [regExp numberOfMatchesInString:encodedAddress options:0 range:NSMakeRange(0, [encodedAddress length])];
 		if (matchCount < 1) return nil;
-		address = [self createAddress:encodedPersonal regExp:regExp bracketed:YES];
+		address = [self createAddress:encodedAddress regExp:regExp bracketed:YES];
 	}
 	return address;
 }

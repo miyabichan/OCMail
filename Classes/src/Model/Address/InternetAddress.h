@@ -23,5 +23,7 @@
 - (id)initWithAddress:(NSString*)address personal:(NSString*)personal;
 - (void)createEncodedPersonal:(NSString*)personal encoding:(NSStringEncoding)encoding;
 - (void)createEncodedPersonal:(NSStringEncoding)encoding;
+- (void)createDecodedPersonal;
+- (void)createDecodedPersonal:(NSString*)encodedPersonal;
 
 @end

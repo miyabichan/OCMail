@@ -20,6 +20,6 @@
 + (char*)createMechanism:(AuthMechanism)mechanism;
 + (NSString*)encodePersonal:(NSString*)personal encoding:(NSStringEncoding)encoding;
 + (NSString*)decodePersonal:(NSString*)encodedPersonal;
-+ (NSString*)createAddress:(NSString*)encodedPersonal;
++ (NSString*)createAddress:(NSString*)encodedAddress;
 
 @end
