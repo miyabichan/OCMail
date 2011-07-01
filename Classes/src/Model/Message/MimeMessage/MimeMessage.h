@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "InternetAddress.h"
 #import "MimeBody.h"
 
 
@@ -17,13 +18,13 @@
 	NSString* contentType_;
 	NSString* encoding_;
 	NSDate* date_;
-	NSDictionary* from_;
-	NSDictionary* sender_;
-	NSDictionary* replyTo_;
-	NSArray* receiveTo_; // NSArray<NSDictionary*>
-	NSArray* receiveCc_; // NSArray<NSDictionary*>
-	NSArray* receiveBcc_; // NSArray<NSDictionary*>
-	NSArray* headers_; // NSArray<NSDictionary*>
+	InternetAddress* from_;
+	InternetAddress* sender_;
+	InternetAddress* replyTo_;
+	NSArray* receiveTo_;	// NSArray<InternetAddress*>
+	NSArray* receiveCc_;	// NSArray<InternetAddress*>
+	NSArray* receiveBcc_;	// NSArray<InternetAddress*>
+	NSArray* headers_;		// NSArray<NSDictionary*>
 	MimeBody* messageBody_;
 }
 
@@ -32,13 +33,13 @@
 @property (nonatomic, copy) NSString* contentType;
 @property (nonatomic, copy) NSString* encoding;
 @property (nonatomic, retain) NSDate* date;
-@property (nonatomic, retain) NSDictionary* from;
-@property (nonatomic, retain) NSDictionary* sender;
-@property (nonatomic, retain) NSDictionary* replyTo;
-@property (nonatomic, retain) NSArray* receiveTo; // NSArray<NSDictionary*>
-@property (nonatomic, retain) NSArray* receiveCc; // NSArray<NSDictionary*>
-@property (nonatomic, retain) NSArray* receiveBcc; // NSArray<NSDictionary*>
-@property (nonatomic, retain) NSArray* headers; // NSArray<NSDictionary*>
+@property (nonatomic, retain) InternetAddress* from;
+@property (nonatomic, retain) InternetAddress* sender;
+@property (nonatomic, retain) InternetAddress* replyTo;
+@property (nonatomic, retain) NSArray* receiveTo;	// NSArray<InternetAddress*>
+@property (nonatomic, retain) NSArray* receiveCc;	// NSArray<InternetAddress*>
+@property (nonatomic, retain) NSArray* receiveBcc;	// NSArray<InternetAddress*>
+@property (nonatomic, retain) NSArray* headers;		// NSArray<NSDictionary*>
 @property (nonatomic, retain) MimeBody* messageBody;
 
 - (NSData*)createMessageData;

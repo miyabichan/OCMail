@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		880739B213BD5EF900E11CCB /* salzburg.png in Resources */ = {isa = PBXBuildFile; fileRef = 880739B113BD5EF900E11CCB /* salzburg.png */; };
 		88149BA6138B4B5600B16002 /* IMAPServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 88149BA4138B4B5600B16002 /* IMAPServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88149BA7138B4B5600B16002 /* IMAPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88149BA5138B4B5600B16002 /* IMAPServer.m */; };
 		88149BAF138B550600B16002 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E431339C24C0044FAF2 /* UIKit.framework */; };
@@ -67,6 +68,7 @@
 		88210E2613865B0500B89BB8 /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
 		88210E2713865B0500B89BB8 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B43137B848E00C45F6A /* NSString+Util.m */; };
 		88210E2813865B0500B89BB8 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B45137B848E00C45F6A /* UIImage+Util.m */; };
+		88268E6513BD9E0000C9B08E /* salzburg.png in Resources */ = {isa = PBXBuildFile; fileRef = 880739B113BD5EF900E11CCB /* salzburg.png */; };
 		88299ABB13B826FB000C5E44 /* MailOperator.h in Headers */ = {isa = PBXBuildFile; fileRef = 88299AB913B826FB000C5E44 /* MailOperator.h */; };
 		88299ABC13B826FB000C5E44 /* MailOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ABA13B826FB000C5E44 /* MailOperator.m */; };
 		88299AC013B82796000C5E44 /* MimeBody.h in Headers */ = {isa = PBXBuildFile; fileRef = 88299ABE13B82796000C5E44 /* MimeBody.h */; };
@@ -147,6 +149,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		880739B113BD5EF900E11CCB /* salzburg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = salzburg.png; sourceTree = "<group>"; };
 		88149BA4138B4B5600B16002 /* IMAPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAPServer.h; sourceTree = "<group>"; };
 		88149BA5138B4B5600B16002 /* IMAPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMAPServer.m; sourceTree = "<group>"; };
 		88149BAE138B550600B16002 /* IMAPServerTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IMAPServerTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -507,6 +510,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		880739AE13BD5E9100E11CCB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				880739B013BD5ED200E11CCB /* images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		880739B013BD5ED200E11CCB /* images */ = {
+			isa = PBXGroup;
+			children = (
+				880739B113BD5EF900E11CCB /* salzburg.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		88149BC7138B567400B16002 /* openssl */ = {
 			isa = PBXGroup;
 			children = (
@@ -932,6 +951,7 @@
 			children = (
 				88E06E621339C9200044FAF2 /* Classes */,
 				88E06E421339C24C0044FAF2 /* Frameworks */,
+				880739AE13BD5E9100E11CCB /* Resources */,
 				88E06E401339C24C0044FAF2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1353,6 +1373,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880739B213BD5EF900E11CCB /* salzburg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1360,6 +1381,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88268E6513BD9E0000C9B08E /* salzburg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,19 +11,19 @@
 
 @interface BodyPart : NSObject {
 @private
+	NSString* fileName_;
     NSString* contentType_;
-	NSString* encoding_;
 	NSString* description_;
 	NSString* disposition_;
-	NSString* boudary_;
-	id content_;
+	NSData* content_;
+	NSStringEncoding encoding_;
 }
 
+@property (nonatomic, copy) NSString* fileName;
 @property (nonatomic, copy) NSString* contentType;
-@property (nonatomic, copy) NSString* encoding;
 @property (nonatomic, copy) NSString* description;
 @property (nonatomic, copy) NSString* disposition;
-@property (nonatomic, copy) NSString* boundary;
-@property (nonatomic, retain) id content;
+@property (nonatomic, retain) NSData* content;
+@property (nonatomic, assign) NSStringEncoding encoding;
 
 @end

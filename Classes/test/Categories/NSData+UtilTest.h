@@ -16,7 +16,8 @@
 #import <OCMock/OCMock.h>
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
-#import <Foundation/Foundation.h>
+//#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "NSData+Util.h"
 
 

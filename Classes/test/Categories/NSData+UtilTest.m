@@ -46,4 +46,23 @@
 	NSLog(@"text: %@", text);
 }
 
+- (void)testBase64WithImage {
+	NSString* path = [[NSBundle bundleForClass:[self class]] pathForResource:@"salzburg" ofType:@"png"];
+	assertThat(path, notNilValue());
+	NSLog(@"path: %@", path);
+	assertThatInteger([path length], greaterThan([NSNumber numberWithInteger:0]));
+
+	NSData* data = [NSData dataWithContentsOfFile:path];
+	NSLog(@"[data length] = %d", [data length]);
+
+	assertThat(data, notNilValue());
+	assertThatInteger([data length], greaterThan([NSNumber numberWithInteger:0]));
+	NSLog(@"data:\n%s\n", [data bytes]);
+	NSData* base64 = [NSData base64Encode:data];
+	assertThat(base64, notNilValue());
+	assertThatInteger([base64 length], greaterThan([NSNumber numberWithInteger:0]));
+	assertThat(base64, isNot(equalTo(data)));
+	NSLog(@"base64:\n%s\n", [base64 bytes]);
+}
+
 @end

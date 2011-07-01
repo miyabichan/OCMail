@@ -27,10 +27,9 @@ static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_
 + (NSEncodingType)createEncodingType:(const char)character;
 + (NSRegularExpression*)createRegExp:(NSString* const)pattern;
 + (NSString*)createAddress:(NSString*)encodedPersonal regExp:(NSRegularExpression*)regExp bracketed:(BOOL)bracketed;
++ (NSString*)createShortText:(NSString*)text;
 @end
 
-
-#pragma mark -
 
 @implementation MailUtil
 
@@ -129,6 +128,22 @@ static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_
 	return address;
 }
 
+#define HEADER_LIMIT 16u
+
++ (NSString*)createShortText:(NSString*)text {
+	NSMutableString* shortText = [NSMutableString string];
+	NSUInteger index;
+	for (index = 0; index < HEADER_LIMIT; ++index) {
+		[shortText appendString:[text substringToIndex:1]];
+		if ([NSString length:shortText] > HEADER_LIMIT) {
+			[shortText substringToIndex:index - 1];
+			break;
+		}
+		text = [text substringFromIndex:1];
+	}
+	return shortText;
+}
+
 
 #pragma mark - Public Methods
 
@@ -217,6 +232,37 @@ static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_
 		address = [self createAddress:encodedAddress regExp:regExp bracketed:YES];
 	}
 	return address;
+}
+
+#define MAX_CHARS_LINE 72u
+
++ (NSString*)wrappedText:(NSString*)text {
+	NSString* rawText = [[text mutableCopy] autorelease];
+	NSMutableString* wrapped = [NSMutableString string];
+	while ([NSString length:rawText] > MAX_CHARS_LINE) {
+		NSString* line = [rawText substringWithRange:NSMakeRange(0, MAX_CHARS_LINE)];
+		[wrapped appendFormat:@"%@\n", line];
+		rawText = [rawText substringWithRange:NSMakeRange(MAX_CHARS_LINE, [rawText length] - MAX_CHARS_LINE)];
+	}
+	[wrapped appendString:rawText];
+	return wrapped;
+}
+
++ (NSString*)lineText:(NSString*)wrappedText {
+	NSString* lineText = [wrappedText stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+	return lineText;
+}
+
++ (NSArray*)createShortTexts:(NSString*)text {
+	NSString* rawText = [[text mutableCopy] autorelease];
+	NSMutableArray* texts = [NSMutableArray array];
+	while ([NSString length:rawText] > HEADER_LIMIT) {
+		NSString* shortText = [self createShortText:rawText];
+		[texts addObject:shortText];
+		rawText = [rawText substringWithRange:NSMakeRange([shortText length], [rawText length] - [shortText length])];
+	}
+	[texts addObject:rawText];
+	return texts;
 }
 
 @end

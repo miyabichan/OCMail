@@ -9,8 +9,26 @@
 #import "NSString+Util.h"
 #import "NSData+Util.h"
 
+@interface NSString (PrivateDelegateHandling)
++ (BOOL)isSigleByte:(NSString*)character;
+@end
+
 
 @implementation NSString (Util)
+
+#pragma mark - Private Methods
+
++ (BOOL)isSigleByte:(NSString*)character {
+	NSString* const singlePattern = @"[\\x20-\\x7E\\xA1-\\xDF]"; // 8bit character's include 8bit-Kana.
+	NSRange match = [character rangeOfString:singlePattern options:NSRegularExpressionSearch];
+	if (match.location != NSNotFound) {
+		return YES;
+	}
+	return NO;
+}
+
+
+#pragma mark - Public Methods
 
 + (BOOL)isEmpty:(NSString*)string {
 	if (string == nil) return YES;
@@ -38,8 +56,7 @@ static char encodingTable[64] = {
 	'g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v',
 	'w','x','y','z','0','1','2','3','4','5','6','7','8','9','+','/' };
 
-+ (NSString*)base64Encode:(NSString*)string encoding:(NSStringEncoding)encoding {
-	NSData* data = [string dataUsingEncoding:encoding];
++ (NSString*)base64Encode:(NSData*)data {
 	unsigned long ixtext = 0;
 	unsigned long lentext = [data length];
 	long ctremaining = 0;
@@ -50,7 +67,7 @@ static char encodingTable[64] = {
 	const unsigned char *bytes = [data bytes];
 	NSMutableString *result = [NSMutableString stringWithCapacity:lentext];
 	
-	while(1) {
+	while (1) {
 		ctremaining = lentext - ixtext;
 		if( ctremaining <= 0 ) break;
 		
@@ -66,8 +83,7 @@ static char encodingTable[64] = {
 		outbuf [3] = inbuf [2] & 0x3F;
 		ctcopy = 4;
 		
-		switch( ctremaining )
-		{
+		switch (ctremaining) {
 			case 1:
 				ctcopy = 2;
 				break;
@@ -76,11 +92,9 @@ static char encodingTable[64] = {
 				break;
 		}
 		
-		for( i = 0; i < ctcopy; i++ )
-			[result appendFormat:@"%c", encodingTable[outbuf[i]]];
+		for (i = 0; i < ctcopy; i++) [result appendFormat:@"%c", encodingTable[outbuf[i]]];
 		
-		for( i = ctcopy; i < 4; i++ )
-			[result appendString:@"="];
+		for (i = ctcopy; i < 4; i++) [result appendString:@"="];
 		
 		ixtext += 3;
 		charsonline += 4;
@@ -88,8 +102,30 @@ static char encodingTable[64] = {
 	return [NSString stringWithString:result];
 }
 
++ (NSString*)base64Encode:(NSString*)string encoding:(NSStringEncoding)encoding {
+	return [self base64Encode:[string dataUsingEncoding:encoding]];
+}
+
 + (NSString*)base64Decode:(NSString*)base64 encoding:(NSStringEncoding)encoding {
-	return [[NSString alloc] initWithData:[NSData base64Decode:base64] encoding:encoding];
+	return [[[NSString alloc] initWithData:[NSData base64Decode:base64] encoding:encoding] autorelease];
+}
+
++ (NSString*)base64Decode:(NSString*)base64 {
+	NSStringEncoding encoding = [base64 smallestEncoding];
+	return [self base64Decode:base64 encoding:encoding];
+}
+
++ (NSUInteger)length:(NSString*)string {
+	NSUInteger length = 0;
+	NSUInteger i;
+	for (i = 0; i < [string length]; i++) {
+		NSString *character = [string substringWithRange:NSMakeRange(i, 1)];
+		++length;
+		if (![self isSigleByte:character]) {
+			++length;
+		}
+	}
+	return length;
 }
 
 @end

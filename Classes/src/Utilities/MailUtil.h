@@ -21,5 +21,8 @@
 + (NSString*)encodePersonal:(NSString*)personal encoding:(NSStringEncoding)encoding;
 + (NSString*)decodePersonal:(NSString*)encodedPersonal;
 + (NSString*)createAddress:(NSString*)encodedAddress;
++ (NSString*)wrappedText:(NSString*)text;
++ (NSString*)lineText:(NSString*)wrappedText;
++ (NSArray*)createShortTexts:(NSString*)text;
 
 @end

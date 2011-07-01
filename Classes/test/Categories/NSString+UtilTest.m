@@ -37,4 +37,11 @@
 	NSLog(@"text: %@", text);
 }
 
+- (void)testLength {
+	NSString* text = @"あいうえおAIUEO";
+	NSUInteger length = [NSString length:text];
+	assertThatInteger(length, greaterThan([NSNumber numberWithInteger:[text length]]));
+	assertThatInteger(length, equalToInteger(15));
+}
+
 @end

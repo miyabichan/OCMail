@@ -11,23 +11,37 @@
 
 @implementation BodyPart
 
+@synthesize fileName = fileName_;
 @synthesize contentType = contentType_;
-@synthesize encoding = encoding_;
 @synthesize description = description_;
 @synthesize disposition = disposition_;
-@synthesize boundary = boudary_;
 @synthesize content = content_;
+@synthesize encoding = encoding_;
 
 #pragma mark - Inherit Methods
 
 - (void)dealloc {
+	self.fileName = nil;
 	self.contentType = nil;
-	self.encoding = nil;
 	self.description = nil;
 	self.disposition = nil;
-	self.boundary = nil;
 	self.content = nil;
 	[super dealloc];
+}
+
+#pragma mark - Public Methods
+
+- (id)initWithContent:(NSData*)content fileName:(NSString*)fileName contentType:(NSString*)contentType {
+	if ((self = [super init])) {
+		self.content = content;
+		self.fileName = fileName;
+		self.contentType = contentType;
+	}
+	return self;
+}
+
+- (id)initWithContent:(NSData*)content fileName:(NSString*)fileName contentType:(NSString*)contentType encoding:(NSStringEncoding)encoding {
+	return self;
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "MailUtilTest.h"
+#import "Categories.h"
 
 
 @implementation MailUtilTest
@@ -59,6 +60,63 @@
 	assertThat(address, notNilValue());
 	assertThat(address, equalTo(@"cisco_jp@emessages.cisco.com"));
 	NSLog(@"address: %@", address);
+}
+
+- (void)testWrappedText {
+	NSString* lineText = @"GyRCPHc4Qkw1PHc4Qkw1OF45ZSROOyQkakBaJGwzJDo9TXg/ZTV7JE4/ZTlUS3YxQE1oS3ZJd01oS3Y/KSQmPzIkaxsoQg==?=";
+	NSString* wrapped = [MailUtil wrappedText:lineText];
+	assertThat(wrapped, isNot(lineText));
+	NSLog(@"wrapped:\n%@", wrapped);
+}
+
+- (void)testWrappedText_ShortText {
+	NSString* lineText = @"GyRCJCIkJCQmJCgkKhsoQg==";
+	NSString* wrapped = [MailUtil wrappedText:lineText];
+	assertThat(wrapped, equalTo(lineText));
+	NSLog(@"wrapped:\n%@", wrapped);
+}
+
+- (void)testEncDecWrap {
+	NSString* path = [[NSBundle bundleForClass:[self class]] pathForResource:@"salzburg" ofType:@"png"];
+	NSData* data = [NSData dataWithContentsOfFile:path];
+	NSString* encText = [NSString base64Encode:data];
+	assertThat(encText, notNilValue());
+	assertThatInteger(encText.length, greaterThan([NSNumber numberWithInteger:0]));
+	NSString* wrapText = [MailUtil wrappedText:encText];
+	assertThat(wrapText, notNilValue());
+	assertThatInteger(wrapText.length, greaterThan([NSNumber numberWithInteger:0]));
+	assertThat(wrapText, isNot(encText));
+		NSLog(@"wrapText:\n%@", wrapText);
+}
+
+- (void)testLineText {
+	NSString* encoded = @"GyRCPHc4Qkw1PHc4Qkw1OF45ZSROOyQkakBaJGwzJDo9TXg/ZTV7JE4/ZTlUS3YxQE1oS3ZJd01oS3Y/KSQmPzIkaxsoQg==?=";
+	NSString* wrapped = [MailUtil wrappedText:encoded];
+	NSString* decWrap = [NSString base64Decode:wrapped encoding:NSISO2022JPStringEncoding];
+	NSString* lineText = [MailUtil lineText:wrapped];
+	assertThat(lineText, isNot(equalTo(wrapped)));
+	assertThat(lineText, equalTo(encoded));
+	NSString* decLine = [NSString base64Decode:lineText encoding:NSISO2022JPStringEncoding];
+	assertThat(decLine, equalTo(decWrap));
+	NSLog(@"decLine:\n%@", decLine);
+}
+
+- (void)testCreateShortTexts {
+	NSString* text = @"ABCDEFGHIJKLMNOPあいうえおかきく0123456789012345";
+	NSArray* texts = [MailUtil createShortTexts:text];
+	assertThat(texts, notNilValue());
+	assertThatInteger(texts.count, greaterThan([NSNumber numberWithInteger:1]));
+	assertThat(texts, hasItem(@"あいうえおかきく"));
+	assertThat(texts, isNot(hasItem(@"ABCDEFGHIJKLMNOPあいうえ")));
+}
+
+- (void)testCreateShortTexts_Short {
+	NSString* text = @"ABCDEFG";
+	NSArray* texts = [MailUtil createShortTexts:text];
+	assertThat(texts, notNilValue());
+	assertThatInteger(texts.count, equalTo([NSNumber numberWithInteger:1]));
+	assertThat(texts, hasItem(text));
+	assertThat(texts, isNot(hasItem(@"ABCDEFGHIJKLMNOP")));
 }
 
 @end
