@@ -136,7 +136,7 @@ static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_
 	for (index = 0; index < HEADER_LIMIT; ++index) {
 		[shortText appendString:[text substringToIndex:1]];
 		if ([NSString length:shortText] > HEADER_LIMIT) {
-			[shortText substringToIndex:index - 1];
+			[shortText deleteCharactersInRange:NSMakeRange(index, 1)];
 			break;
 		}
 		text = [text substringFromIndex:1];

@@ -106,8 +106,13 @@
 	NSArray* texts = [MailUtil createShortTexts:text];
 	assertThat(texts, notNilValue());
 	assertThatInteger(texts.count, greaterThan([NSNumber numberWithInteger:1]));
+	assertThat(texts, hasItem(@"ABCDEFGHIJKLMNOP"));
 	assertThat(texts, hasItem(@"あいうえおかきく"));
+	assertThat(texts, hasItem(@"0123456789012345"));
 	assertThat(texts, isNot(hasItem(@"ABCDEFGHIJKLMNOPあいうえ")));
+	for (NSString* string in texts) {
+		NSLog(@"string = %@", string);
+	}
 }
 
 - (void)testCreateShortTexts_Short {
