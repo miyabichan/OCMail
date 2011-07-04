@@ -21,7 +21,7 @@
 #import "NSData+Util.h"
 
 
-@interface NSDataTest : SenTestCase {
+@interface NSData_UtilTest : SenTestCase {
     
 }
 

@@ -29,4 +29,6 @@
 
 + (NSUInteger)length:(NSString*)string;
 
++ (BOOL)isAsciiOnly:(NSString*)string;
+
 @end

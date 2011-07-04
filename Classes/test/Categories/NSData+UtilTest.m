@@ -9,7 +9,7 @@
 #import "NSData+UtilTest.h"
 
 
-@implementation NSDataTest
+@implementation NSData_UtilTest
 
 - (void)setUp {
 	[super setUp];

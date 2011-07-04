@@ -44,4 +44,42 @@
 	assertThatInteger(length, equalToInteger(15));
 }
 
+- (void)testLength_With8bitKana {
+	NSString* text = @"ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿ";
+	NSUInteger length = [NSString length:text];
+	assertThatInteger(length, greaterThan([NSNumber numberWithInteger:[text length]]));
+	assertThatInteger(length, equalToInteger(30));
+}
+
+- (void)testLength_WithAccent {
+	NSString* text = @"ƒ∂ßçé®†øπœ∑óê†ç";
+	NSUInteger length = [NSString length:text];
+	assertThatInteger(length, greaterThan([NSNumber numberWithInteger:[text length]]));
+	assertThatInteger(length, equalToInteger(30));
+}
+
+- (void)testIsAsciiOnly {
+	NSString* text = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ $?";
+	BOOL asciiOnly = [NSString isAsciiOnly:text];
+	assertThatBool(asciiOnly, equalToBool(YES));
+}
+
+- (void)testIsAsciiOnly_MultBytes {
+	NSString* text = @"あいうえおかきくけこ";
+	BOOL asciiOnly = [NSString isAsciiOnly:text];
+	assertThatBool(asciiOnly, equalToBool(NO));
+}
+
+- (void)testIsAsciiOnly_8bitKanas {
+	NSString* text = @"ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿ";
+	BOOL asciiOnly = [NSString isAsciiOnly:text];
+	assertThatBool(asciiOnly, equalToBool(NO));
+}
+
+- (void)testIsAsciiOnly_Mixed {
+	NSString* text = @"abçdêfghîjklmnopqrßtüvwxyz";
+	BOOL asciiOnly = [NSString isAsciiOnly:text];
+	assertThatBool(asciiOnly, equalToBool(NO));
+}
+
 @end

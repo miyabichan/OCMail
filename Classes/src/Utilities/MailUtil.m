@@ -265,4 +265,14 @@ static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_
 	return texts;
 }
 
++ (NSString*)createHeaderText:(NSString*)text {
+	NSArray* shorts = [self createShortTexts:text];
+	NSMutableString* headerText = [NSMutableString string];
+	for (NSString* string in shorts) {
+		[headerText appendFormat:@"%@\n ", string];
+	}
+	[headerText deleteCharactersInRange:NSMakeRange([headerText length] - 2, 2)];
+	return headerText;
+}
+
 @end

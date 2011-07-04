@@ -19,7 +19,7 @@
 #pragma mark - Private Methods
 
 + (BOOL)isSigleByte:(NSString*)character {
-	NSString* const singlePattern = @"[\\x20-\\x7E\\xA1-\\xDF]"; // 8bit character's include 8bit-Kana.
+	NSString* const singlePattern = @"[\\x20-\\x7E\\xA1-\\xDF]"; // Multi=Byte character's include 8bit-Kana, accents.
 	NSRange match = [character rangeOfString:singlePattern options:NSRegularExpressionSearch];
 	if (match.location != NSNotFound) {
 		return YES;
@@ -118,7 +118,7 @@ static char encodingTable[64] = {
 + (NSUInteger)length:(NSString*)string {
 	NSUInteger length = 0;
 	NSUInteger i;
-	for (i = 0; i < [string length]; i++) {
+	for (i = 0; i < [string length]; ++i) {
 		NSString *character = [string substringWithRange:NSMakeRange(i, 1)];
 		++length;
 		if (![self isSigleByte:character]) {
@@ -126,6 +126,16 @@ static char encodingTable[64] = {
 		}
 	}
 	return length;
+}
+
++ (BOOL)isAsciiOnly:(NSString*)string {
+	NSUInteger i;
+	for (i = 0; i < [string length]; ++i) {
+		NSString* character = [string substringWithRange:NSMakeRange(i, 1)];
+		NSString* encoded = [character stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		if (!encoded || [encoded length] > 3) return NO;
+	}
+	return YES;
 }
 
 @end

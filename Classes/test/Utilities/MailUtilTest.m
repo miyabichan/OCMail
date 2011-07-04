@@ -124,4 +124,14 @@
 	assertThat(texts, isNot(hasItem(@"ABCDEFGHIJKLMNOP")));
 }
 
+- (void)testCreateHeaderText {
+	NSString* text = @"ABCDEFGHIJKLMNOPあいうえおかきく0123456789012345";
+	NSString* header = [MailUtil createHeaderText:text];
+	assertThat(header, notNilValue());
+	assertThatInteger([header length], greaterThan([NSNumber numberWithInteger:1]));
+	assertThat(header, containsString(@"\n "));
+	assertThat(header, equalTo(@"ABCDEFGHIJKLMNOP\n あいうえおかきく\n 0123456789012345"));
+	NSLog(@"header:\n%@", header);
+}
+
 @end
