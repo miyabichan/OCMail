@@ -41,6 +41,12 @@
 }
 
 - (id)initWithContent:(NSData*)content fileName:(NSString*)fileName contentType:(NSString*)contentType encoding:(NSStringEncoding)encoding {
+	if ((self = [super init])) {
+		self.content = content;
+		self.fileName = fileName;
+		self.contentType = contentType;
+		self.encoding = encoding;
+	}
 	return self;
 }
 
