@@ -21,10 +21,10 @@
 	InternetAddress* from_;
 	InternetAddress* sender_;
 	InternetAddress* replyTo_;
-	NSArray* receiveTo_;	// NSArray<InternetAddress*>
-	NSArray* receiveCc_;	// NSArray<InternetAddress*>
-	NSArray* receiveBcc_;	// NSArray<InternetAddress*>
-	NSArray* headers_;		// NSArray<NSDictionary*>
+	NSArray* toRecipients_;  // NSArray<InternetAddress*>
+	NSArray* ccRecipients_;  // NSArray<InternetAddress*>
+	NSArray* bccRecipients_; // NSArray<InternetAddress*>
+	NSArray* headers_;       // NSArray<NSDictionary*>
 	MimeBody* messageBody_;
 }
 
@@ -36,10 +36,10 @@
 @property (nonatomic, retain) InternetAddress* from;
 @property (nonatomic, retain) InternetAddress* sender;
 @property (nonatomic, retain) InternetAddress* replyTo;
-@property (nonatomic, retain) NSArray* receiveTo;	// NSArray<InternetAddress*>
-@property (nonatomic, retain) NSArray* receiveCc;	// NSArray<InternetAddress*>
-@property (nonatomic, retain) NSArray* receiveBcc;	// NSArray<InternetAddress*>
-@property (nonatomic, retain) NSArray* headers;		// NSArray<NSDictionary*>
+@property (nonatomic, retain) NSArray* toRecipients;  // NSArray<InternetAddress*>
+@property (nonatomic, retain) NSArray* ccRecipients;  // NSArray<InternetAddress*>
+@property (nonatomic, retain) NSArray* bccRecipients; // NSArray<InternetAddress*>
+@property (nonatomic, retain) NSArray* headers;		  // NSArray<NSDictionary*>
 @property (nonatomic, retain) MimeBody* messageBody;
 
 - (NSData*)createMessageData;

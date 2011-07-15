@@ -19,9 +19,9 @@
 @synthesize from = from_;
 @synthesize sender = sender_;
 @synthesize replyTo = replyTo_;
-@synthesize receiveTo = receiveTo_;
-@synthesize receiveCc = receiveCc_;
-@synthesize receiveBcc = receiveBcc_;
+@synthesize toRecipients = toRecipients_;
+@synthesize ccRecipients = ccRecipients_;
+@synthesize bccRecipients = bccRecipients_;
 @synthesize headers = headers_;
 @synthesize messageBody = messageBody_;
 
@@ -36,9 +36,9 @@
 	self.from = nil;
 	self.sender = nil;
 	self.replyTo = nil;
-	self.receiveTo = nil;
-	self.receiveCc = nil;
-	self.receiveBcc = nil;
+	self.toRecipients = nil;
+	self.ccRecipients = nil;
+	self.bccRecipients = nil;
 	self.headers = nil;
 	self.messageBody = nil;
 	[super dealloc];
