@@ -31,6 +31,8 @@
 @property (nonatomic, assign) BOOL connected;
 @property (nonatomic, assign) BOOL authorized;
 
+- (id)initWithAddress:(NSString*)address portNo:(NSUInteger)portNo ssl:(BOOL)ssl;
+- (id)initWithAddress:(NSString*)address portNo:(NSUInteger)portNo ssl:(BOOL)ssl userName:(NSString*)userName password:(NSString*)password;
 - (NSInteger)connect;
 - (NSInteger)disconnect;
 - (NSInteger)startTLS;

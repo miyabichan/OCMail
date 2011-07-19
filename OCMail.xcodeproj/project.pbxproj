@@ -77,6 +77,31 @@
 		88299AC613B827ED000C5E44 /* MimeMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299AC413B827ED000C5E44 /* MimeMessage.m */; };
 		88299ACB13B84D9A000C5E44 /* BodyPart.h in Headers */ = {isa = PBXBuildFile; fileRef = 88299AC913B84D9A000C5E44 /* BodyPart.h */; };
 		88299ACC13B84D9A000C5E44 /* BodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ACA13B84D9A000C5E44 /* BodyPart.m */; };
+		883E639113D5564D00DA3541 /* InternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8D1D113B963110042D9EA /* InternetAddress.m */; };
+		883E639A13D55C0400DA3541 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E431339C24C0044FAF2 /* UIKit.framework */; };
+		883E639B13D55C0400DA3541 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E451339C24C0044FAF2 /* Foundation.framework */; };
+		883E639C13D55C0400DA3541 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E471339C24C0044FAF2 /* CoreGraphics.framework */; };
+		883E63AB13D55C5500DA3541 /* libetpan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 886C8AA1137B544C00C45F6A /* libetpan.a */; };
+		883E63AC13D55C5B00DA3541 /* libOCHamcrest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06EAE1339CABD0044FAF2 /* libOCHamcrest.a */; };
+		883E63AD13D55C5B00DA3541 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06EB81339CAC80044FAF2 /* libOCMock.a */; };
+		883E63AE13D55C9A00DA3541 /* NSArray+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B3F137B848E00C45F6A /* NSArray+Util.m */; };
+		883E63AF13D55C9A00DA3541 /* NSData+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B41137B848E00C45F6A /* NSData+Util.m */; };
+		883E63B013D55C9A00DA3541 /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
+		883E63B113D55C9A00DA3541 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B43137B848E00C45F6A /* NSString+Util.m */; };
+		883E63B213D55C9A00DA3541 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B45137B848E00C45F6A /* UIImage+Util.m */; };
+		883E63B313D55CA800DA3541 /* SMTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A4D083134E9F7E003CCB75 /* SMTPServer.m */; };
+		883E63B413D55CAB00DA3541 /* POP3Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 88614D6E1383BE50007D046A /* POP3Server.m */; };
+		883E63B513D55CB000DA3541 /* IMAPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88149BA5138B4B5600B16002 /* IMAPServer.m */; };
+		883E63B613D55CB400DA3541 /* MailOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ABA13B826FB000C5E44 /* MailOperator.m */; };
+		883E63B713D55CB800DA3541 /* MailServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88282721134DBA6F00D215CB /* MailServer.m */; };
+		883E63B813D55CBC00DA3541 /* MailUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 885A6B9F1389EF8400F1CE9D /* MailUtil.m */; };
+		883E63B913D55CC800DA3541 /* MimeMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299AC413B827ED000C5E44 /* MimeMessage.m */; };
+		883E63BA13D55CCE00DA3541 /* MimeBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ABF13B82796000C5E44 /* MimeBody.m */; };
+		883E63BB13D55CD000DA3541 /* BodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ACA13B84D9A000C5E44 /* BodyPart.m */; };
+		883E63BC13D55CD800DA3541 /* InternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8D1D113B963110042D9EA /* InternetAddress.m */; };
+		883E63BF13D55D0700DA3541 /* MailOperatorTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 883E63BD13D55D0700DA3541 /* MailOperatorTest.h */; };
+		883E63C013D55D0700DA3541 /* MailOperatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E63BE13D55D0700DA3541 /* MailOperatorTest.m */; };
+		883E63C113D55D0700DA3541 /* MailOperatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E63BE13D55D0700DA3541 /* MailOperatorTest.m */; };
 		884BB4CC13838B62007468F8 /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
 		884BB4CE13838B62007468F8 /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
 		885A6BA11389EF8400F1CE9D /* MailUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 885A6B9F1389EF8400F1CE9D /* MailUtil.m */; };
@@ -170,6 +195,9 @@
 		88299AC413B827ED000C5E44 /* MimeMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MimeMessage.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		88299AC913B84D9A000C5E44 /* BodyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPart.h; sourceTree = "<group>"; };
 		88299ACA13B84D9A000C5E44 /* BodyPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPart.m; sourceTree = "<group>"; };
+		883E639913D55C0300DA3541 /* OperatorTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OperatorTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		883E63BD13D55D0700DA3541 /* MailOperatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailOperatorTest.h; sourceTree = "<group>"; };
+		883E63BE13D55D0700DA3541 /* MailOperatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailOperatorTest.m; sourceTree = "<group>"; };
 		884BB4C913838B62007468F8 /* NSDate+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Util.h"; sourceTree = "<group>"; };
 		884BB4CA13838B62007468F8 /* NSDate+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Util.m"; sourceTree = "<group>"; };
 		885A6B9E1389EF8400F1CE9D /* MailUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailUtil.h; sourceTree = "<group>"; };
@@ -455,6 +483,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		883E639513D55C0300DA3541 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				883E639A13D55C0400DA3541 /* UIKit.framework in Frameworks */,
+				883E639B13D55C0400DA3541 /* Foundation.framework in Frameworks */,
+				883E639C13D55C0400DA3541 /* CoreGraphics.framework in Frameworks */,
+				883E63AB13D55C5500DA3541 /* libetpan.a in Frameworks */,
+				883E63AC13D55C5B00DA3541 /* libOCHamcrest.a in Frameworks */,
+				883E63AD13D55C5B00DA3541 /* libOCMock.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8867298E13BAA88C0018F4A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -616,6 +657,15 @@
 				88299ACA13B84D9A000C5E44 /* BodyPart.m */,
 			);
 			path = BodyPart;
+			sourceTree = "<group>";
+		};
+		883E639313D55BD500DA3541 /* Operator */ = {
+			isa = PBXGroup;
+			children = (
+				883E63BD13D55D0700DA3541 /* MailOperatorTest.h */,
+				883E63BE13D55D0700DA3541 /* MailOperatorTest.m */,
+			);
+			path = Operator;
 			sourceTree = "<group>";
 		};
 		885A6B9C1389EF4E00F1CE9D /* Utilities */ = {
@@ -890,6 +940,7 @@
 			isa = PBXGroup;
 			children = (
 				8867298B13BAA84B0018F4A0 /* Address */,
+				883E639313D55BD500DA3541 /* Operator */,
 				88A4D058134E8F20003CCB75 /* Server */,
 			);
 			path = Model;
@@ -966,6 +1017,7 @@
 				88E8D1F113B9AE8A0042D9EA /* CategoriesTest.octest */,
 				88E8D21813B9D5BC0042D9EA /* UtilitiesTest.octest */,
 				8867299213BAA88C0018F4A0 /* ModelTest.octest */,
+				883E639913D55C0300DA3541 /* OperatorTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1179,6 +1231,7 @@
 				88299AC513B827ED000C5E44 /* MimeMessage.h in Headers */,
 				88299ACB13B84D9A000C5E44 /* BodyPart.h in Headers */,
 				88E8D1D213B963110042D9EA /* InternetAddress.h in Headers */,
+				883E63BF13D55D0700DA3541 /* MailOperatorTest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1238,6 +1291,24 @@
 			productName = OCMail;
 			productReference = 881D977813821753009CB8B5 /* libOCMail.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		883E639813D55C0300DA3541 /* OperatorTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 883E63A813D55C0400DA3541 /* Build configuration list for PBXNativeTarget "OperatorTest" */;
+			buildPhases = (
+				883E639413D55C0300DA3541 /* Sources */,
+				883E639513D55C0300DA3541 /* Frameworks */,
+				883E639613D55C0300DA3541 /* Resources */,
+				883E639713D55C0300DA3541 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OperatorTest;
+			productName = OperatorTest;
+			productReference = 883E639913D55C0300DA3541 /* OperatorTest.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 		8867299113BAA88C0018F4A0 /* ModelTest */ = {
 			isa = PBXNativeTarget;
@@ -1329,13 +1400,14 @@
 			projectRoot = "";
 			targets = (
 				881D977713821753009CB8B5 /* OCMail-iOS */,
+				88F3BFEC1395CEA400C6E934 /* OCMail-iOSUniversal */,
 				88E8D1F013B9AE8A0042D9EA /* CategoriesTest */,
 				8867299113BAA88C0018F4A0 /* ModelTest */,
 				88149BAD138B550600B16002 /* IMAPServerTest */,
+				883E639813D55C0300DA3541 /* OperatorTest */,
 				881A69211385EDAB0005CEC6 /* POP3Test */,
 				886C8AEC137B6D6800C45F6A /* SMTPServerTest */,
 				88E8D21713B9D5BC0042D9EA /* UtilitiesTest */,
-				88F3BFEC1395CEA400C6E934 /* OCMail-iOSUniversal */,
 			);
 		};
 /* End PBXProject section */
@@ -1349,6 +1421,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		881A691F1385EDAB0005CEC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		883E639613D55C0300DA3541 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1402,6 +1481,19 @@
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		881A69201385EDAB0005CEC6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		883E639713D55C0300DA3541 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1563,6 +1655,30 @@
 				88299AC613B827ED000C5E44 /* MimeMessage.m in Sources */,
 				88299ACC13B84D9A000C5E44 /* BodyPart.m in Sources */,
 				88E8D1D313B963110042D9EA /* InternetAddress.m in Sources */,
+				883E63C013D55D0700DA3541 /* MailOperatorTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		883E639413D55C0300DA3541 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				883E63AE13D55C9A00DA3541 /* NSArray+Util.m in Sources */,
+				883E63AF13D55C9A00DA3541 /* NSData+Util.m in Sources */,
+				883E63B013D55C9A00DA3541 /* NSDate+Util.m in Sources */,
+				883E63B113D55C9A00DA3541 /* NSString+Util.m in Sources */,
+				883E63B213D55C9A00DA3541 /* UIImage+Util.m in Sources */,
+				883E63B313D55CA800DA3541 /* SMTPServer.m in Sources */,
+				883E63B413D55CAB00DA3541 /* POP3Server.m in Sources */,
+				883E63B513D55CB000DA3541 /* IMAPServer.m in Sources */,
+				883E63B613D55CB400DA3541 /* MailOperator.m in Sources */,
+				883E63B713D55CB800DA3541 /* MailServer.m in Sources */,
+				883E63B813D55CBC00DA3541 /* MailUtil.m in Sources */,
+				883E63B913D55CC800DA3541 /* MimeMessage.m in Sources */,
+				883E63BA13D55CCE00DA3541 /* MimeBody.m in Sources */,
+				883E63BB13D55CD000DA3541 /* BodyPart.m in Sources */,
+				883E63BC13D55CD800DA3541 /* InternetAddress.m in Sources */,
+				883E63C113D55D0700DA3541 /* MailOperatorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1594,6 +1710,7 @@
 				886C8B51137B848E00C45F6A /* UIImage+Util.m in Sources */,
 				884BB4CE13838B62007468F8 /* NSDate+Util.m in Sources */,
 				885A6BA31389EF8400F1CE9D /* MailUtil.m in Sources */,
+				883E639113D5564D00DA3541 /* InternetAddress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1861,6 +1978,98 @@
 				PRODUCT_NAME = "${PROJECT_NAME}";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "Headers/${PRODUCT_NAME}";
+			};
+			name = Release;
+		};
+		883E63A913D55C0400DA3541 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Frameworks/OCHamcrest/Headers\"",
+					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
+					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/libetpan\"",
+					"\"$(SRCROOT)/Frameworks/OCHamcrest\"",
+					"\"$(SRCROOT)/Frameworks/OCMock\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-all_load",
+					"-lstdc++",
+					"-lgcov",
+					"-ObjC",
+					"-lz",
+					"-liconv.2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		883E63AA13D55C0400DA3541 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Frameworks/OCHamcrest/Headers\"",
+					"\"$(SRCROOT)/Frameworks/OCMock/Headers\"",
+					"\"$(SRCROOT)/Frameworks/libetpan/Headers\"",
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/libetpan\"",
+					"\"$(SRCROOT)/Frameworks/OCHamcrest\"",
+					"\"$(SRCROOT)/Frameworks/OCMock\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-all_load",
+					"-lstdc++",
+					"-lgcov",
+					"-ObjC",
+					"-lz",
+					"-liconv.2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -2313,6 +2522,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		883E63A813D55C0400DA3541 /* Build configuration list for PBXNativeTarget "OperatorTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				883E63A913D55C0400DA3541 /* Debug */,
+				883E63AA13D55C0400DA3541 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		886729A113BAA88C0018F4A0 /* Build configuration list for PBXNativeTarget "ModelTest" */ = {
 			isa = XCConfigurationList;

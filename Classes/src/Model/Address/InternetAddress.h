@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString* encodedPersonal;
 
 - (id)initWithAddress:(NSString*)address personal:(NSString*)personal;
+- (id)initWithAddress:(NSString*)address personal:(NSString*)personal encoding:(NSStringEncoding)encoding;
 - (void)createEncodedPersonal:(NSString*)personal encoding:(NSStringEncoding)encoding;
 - (void)createEncodedPersonal:(NSStringEncoding)encoding;
 - (void)createDecodedPersonal;

@@ -8,6 +8,7 @@
 
 #import "SMTPServer.h"
 #import "MailUtil.h"
+#import "InternetAddress.h"
 
 
 @interface SMTPServer (PrivateDelegateHandling)
@@ -127,9 +128,9 @@
 
 - (NSInteger)sendRecipients:(NSArray*)recipients {
 	NSInteger retCode = MAILSMTP_NO_ERROR;
-	for (NSDictionary* addressDic in recipients) {
+	for (InternetAddress* internetAddress in recipients) {
 		if (retCode != MAILSMTP_NO_ERROR) break;
-		retCode = [self sendRecipientAddress:(NSString*)[addressDic objectForKey:@"email"]];
+		retCode = [self sendRecipientAddress:internetAddress.address];
 	}
 	return retCode;
 }

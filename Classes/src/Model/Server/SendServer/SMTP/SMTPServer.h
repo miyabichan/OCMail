@@ -22,7 +22,7 @@
 - (id)initWithResource:(mailsmtp*)smtp;
 - (BOOL)elho;
 - (NSInteger)sendFromAddress:(NSString*)email;
-- (NSInteger)sendRecipients:(NSArray*)recipients;
+- (NSInteger)sendRecipients:(NSArray*)recipients; // recipients - NSArray<InternetAddress*>
 - (NSInteger)sendMessage:(NSData*)message;
 
 @end

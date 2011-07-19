@@ -9,8 +9,16 @@
 #import "SMTPServerTest.h"
 #import "Categories.h"
 #import "PrimitiveToNumber.h"
+#import "InternetAddress.h"
 
 @implementation SMTPServerTest
+
+- (void)checkConnection {
+	NSInteger ret = [_smtpServer connect];
+	assertThat(numberInt(ret), equalToInt(MAILSMTP_NO_ERROR));
+	BOOL ehlo = [_smtpServer elho];
+	assertThatBool(ehlo, equalToBool(YES));
+}
 
 - (void)setUp {
 	[super setUp];
@@ -29,6 +37,26 @@
 	unsigned int addr = [NSString convertHexString:addrStr];
 	assertThatInt(addr, greaterThan(numberInt(0)));
 	NSLog(@"addr: %d", addr);
+}
+
+- (void)testInitWithAddress {
+	_smtpServer = [[SMTPServer alloc] initWithAddress:@"mail.mail.mail" portNo:999u ssl:NO];
+	assertThat(_smtpServer, notNilValue());
+	assertThat(_smtpServer.address, notNilValue());
+	assertThat(_smtpServer.address, equalTo(@"mail.mail.mail"));
+	assertThatInteger(_smtpServer.portNo, equalToInteger(999u));
+	assertThatBool(_smtpServer.ssl, equalToBool(NO));
+}
+
+- (void)testInitWithAddressWithUserName {
+	_smtpServer = [[SMTPServer alloc] initWithAddress:@"mail.mail.mail" portNo:999u ssl:NO userName:@"HOGE" password:@"FOO"];
+	assertThat(_smtpServer, notNilValue());
+	assertThat(_smtpServer.address, notNilValue());
+	assertThat(_smtpServer.address, equalTo(@"mail.mail.mail"));
+	assertThatInteger(_smtpServer.portNo, equalToInteger(999u));
+	assertThatBool(_smtpServer.ssl, equalToBool(NO));
+	assertThat(_smtpServer.userName, equalTo(@"HOGE"));
+	assertThat(_smtpServer.password, equalTo(@"FOO"));
 }
 
 - (void)testInitWithSMTP {
@@ -158,13 +186,6 @@
 	}
 }
 
-- (void)checkConnection {
-	NSInteger ret = [_smtpServer connect];
-	assertThat(numberInt(ret), equalToInt(MAILSMTP_NO_ERROR));
-	BOOL ehlo = [_smtpServer elho];
-	assertThatBool(ehlo, equalToBool(YES));
-}
-
 - (void)testStartTLS {
 	_smtpServer.address = @"mail.mail.mail";
 	_smtpServer.portNo = 587u;
@@ -224,7 +245,9 @@
 - (void)testSendRecipients {
 	_smtpServer.address = @"mail.mail.mail";
 	_smtpServer.portNo = 25u;
-	NSArray* array = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:@"hoge@hoge.jp" forKey:@"email"], [NSDictionary dictionaryWithObject:@"foo@foo.jp" forKey:@"email"], nil];
+	InternetAddress* hogeAddress = [[[InternetAddress alloc] initWithAddress:@"hoge@hoge.jp" personal:@"HOGE"] autorelease];
+	InternetAddress* fooAddress = [[[InternetAddress alloc] initWithAddress:@"foo@foo.jp" personal:@"FOO"] autorelease];
+	NSArray* array = [NSArray arrayWithObjects:hogeAddress, fooAddress, nil];
 	[self checkConnection];
 	NSInteger ret = [_smtpServer sendFromAddress:@"foo@foo.foo"];
 	assertThat(numberInt(ret), equalToInt(MAILSMTP_NO_ERROR));
@@ -252,5 +275,6 @@
 #endif
 
 #endif
+
 
 @end

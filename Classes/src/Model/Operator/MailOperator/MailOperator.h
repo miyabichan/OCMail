@@ -8,19 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import "MailServer.h"
+#import "MimeMessage.h"
 
 
 @interface MailOperator : NSObject {
 @private
 	MailServer* sendServer_;
 	MailServer* receiveServer_;
+	NSArray* folders_;
 	BOOL imapUse_;
 }
 
 @property (nonatomic, retain) MailServer* sendServer;
-@property (nonatomic, retain, setter=createRecieveServer:) MailServer* receiveServer;
+@property (nonatomic, retain) MailServer* receiveServer;
+@property (nonatomic, retain) NSArray* folders;
 @property (nonatomic, assign) BOOL imapUse;
 
-- (id)initWithElements:(MailServer*)sendServer receiveServer:(MailServer*)receiveServer;
+- (void)createRecieveServer:(MailServer*)receiveServer;
+- (id)initWithSendServer:(MailServer*)sendServer receiveServer:(MailServer*)receiveServer;
+- (BOOL)sendMessage:(MimeMessage*)message;
 
 @end

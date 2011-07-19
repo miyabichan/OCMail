@@ -32,6 +32,26 @@
 	NSLog(@"addr: %d", addr);
 }
 
+- (void)testInitWithAddress {
+	_pop3Server = [[POP3Server alloc] initWithAddress:@"mail.mail.mail" portNo:999u ssl:NO];
+	assertThat(_pop3Server, notNilValue());
+	assertThat(_pop3Server.address, notNilValue());
+	assertThat(_pop3Server.address, equalTo(@"mail.mail.mail"));
+	assertThatInteger(_pop3Server.portNo, equalToInteger(999u));
+	assertThatBool(_pop3Server.ssl, equalToBool(NO));
+}
+
+- (void)testInitWithAddressWithUserName {
+	_pop3Server = [[POP3Server alloc] initWithAddress:@"mail.mail.mail" portNo:999u ssl:YES userName:@"HOGE" password:@"FOO"];
+	assertThat(_pop3Server, notNilValue());
+	assertThat(_pop3Server.address, notNilValue());
+	assertThat(_pop3Server.address, equalTo(@"mail.mail.mail"));
+	assertThatInteger(_pop3Server.portNo, equalToInteger(999u));
+	assertThatBool(_pop3Server.ssl, equalToBool(YES));
+	assertThat(_pop3Server.userName, equalTo(@"HOGE"));
+	assertThat(_pop3Server.password, equalTo(@"FOO"));
+}
+
 - (void)testInitWihResouce {
 	[_pop3Server release];
 	_pop3Server = [[POP3Server alloc] initWithResource:mailpop3_new(0, NULL)];

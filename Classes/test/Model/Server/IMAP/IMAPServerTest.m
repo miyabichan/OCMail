@@ -32,6 +32,26 @@
 	NSLog(@"addr: %d", addr);
 }
 
+- (void)testInitWithAddress {
+	_imapSever = [[IMAPServer alloc] initWithAddress:@"mail.mail.mail" portNo:999u ssl:NO];
+	assertThat(_imapSever, notNilValue());
+	assertThat(_imapSever.address, notNilValue());
+	assertThat(_imapSever.address, equalTo(@"mail.mail.mail"));
+	assertThatInteger(_imapSever.portNo, equalToInteger(999u));
+	assertThatBool(_imapSever.ssl, equalToBool(NO));
+}
+
+- (void)testInitWithAddressWithUserName {
+	_imapSever = [[IMAPServer alloc] initWithAddress:@"mail.mail.mail" portNo:999u ssl:YES userName:@"HOGE" password:@"FOO"];
+	assertThat(_imapSever, notNilValue());
+	assertThat(_imapSever.address, notNilValue());
+	assertThat(_imapSever.address, equalTo(@"mail.mail.mail"));
+	assertThatInteger(_imapSever.portNo, equalToInteger(999u));
+	assertThatBool(_imapSever.ssl, equalToBool(YES));
+	assertThat(_imapSever.userName, equalTo(@"HOGE"));
+	assertThat(_imapSever.password, equalTo(@"FOO"));
+}
+
 - (void)testInitWithResource {
 	[_imapSever release];
 	_imapSever = [[IMAPServer alloc] initWithResource:mailimap_new(0, NULL)];

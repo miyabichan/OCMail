@@ -29,6 +29,23 @@
 	return self;
 }
 
+- (id)initWithAddress:(NSString*)address portNo:(NSUInteger)portNo ssl:(BOOL)ssl {
+	if ((self = [self init])) {
+		self.address = address;
+		self.portNo = portNo;
+		self.ssl = ssl;
+	}
+	return self;
+}
+
+- (id)initWithAddress:(NSString*)address portNo:(NSUInteger)portNo ssl:(BOOL)ssl userName:(NSString*)userName password:(NSString*)password {
+	if ((self =[self initWithAddress:address portNo:portNo ssl:ssl])) {
+		self.userName = userName;
+		self.password = password;
+	}
+	return self;
+}
+
 - (void)dealloc {
 	self.userName = nil;
 	self.password = nil;
