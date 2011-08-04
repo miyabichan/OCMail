@@ -23,7 +23,7 @@
 		[formatter setLocale:enUS];
 		[formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss ZZ"];
 	}
-	return formatter;
+	return [formatter retain];
 }
 
 + (NSDate*)dateFromRFC2822:(NSString *)rfc2822 {
