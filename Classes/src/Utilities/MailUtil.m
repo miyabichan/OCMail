@@ -22,8 +22,6 @@ typedef enum {
 // This function from DINH Viet Hoa
 // See http://article.gmane.org/gmane.mail.libetpan.user/377
 static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_len);
-+ (NSString*)createEncodeName:(NSStringEncoding)encoding;
-+ (NSStringEncoding)createEncoding:(NSString*)encodeName;
 + (NSEncodingType)createEncodingType:(const char)character;
 + (NSRegularExpression*)createRegExp:(NSString* const)pattern;
 + (NSString*)createAddress:(NSString*)encodedPersonal regExp:(NSRegularExpression*)regExp bracketed:(BOOL)bracketed;
@@ -52,53 +50,6 @@ static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_
 	
 	snprintf(ip_port, local_ip_port_len, "%s;%i", ip_port_buf, ntohs(name.sin_port));
 	return 0;
-}
-
-+ (NSString*)createEncodeName:(NSStringEncoding)encoding {
-	switch (encoding) {
-		case NSJapaneseEUCStringEncoding:
-			return @"EUC-JP";
-		case NSUTF8StringEncoding:
-			return @"UTF-8";
-		case NSISOLatin1StringEncoding:
-			return @"ISO-8859-1";
-		case NSShiftJISStringEncoding:
-			return @"Shift_JIS";
-		case NSISOLatin2StringEncoding:
-			return @"ISO-8859-2";
-		case NSUnicodeStringEncoding:
-			return @"UTF-16";
-		case NSWindowsCP1251StringEncoding:
-			return @"Windows-1251";
-		case NSWindowsCP1252StringEncoding:
-			return @"Windows-1252";
-		case NSWindowsCP1253StringEncoding:
-			return @"Windows-1253";
-		case NSWindowsCP1254StringEncoding:
-			return @"Windows-1254";
-		case NSWindowsCP1250StringEncoding:
-			return @"Windows-1250";
-		case NSISO2022JPStringEncoding:
-			return @"ISO-2022-JP";
-	}
-	return nil;
-}
-
-+ (NSStringEncoding)createEncoding:(NSString*)encodeName {
-	NSString* lowerName = [encodeName lowercaseString];
-	if ([lowerName isEqualToString:@"euc-jp"]) return NSJapaneseEUCStringEncoding;
-	if ([lowerName isEqualToString:@"utf-8"]) return NSUTF8StringEncoding;
-	if ([lowerName isEqualToString:@"iso-8859-1"]) return NSISOLatin1StringEncoding;
-	if ([lowerName isEqualToString:@"shift_jis"]) return NSShiftJISStringEncoding;
-	if ([lowerName isEqualToString:@"iso-8859-2"]) return NSISOLatin2StringEncoding;
-	if ([lowerName isEqualToString:@"utf-16"]) return NSUnicodeStringEncoding;
-	if ([lowerName isEqualToString:@"windows-1251"]) return NSWindowsCP1251StringEncoding;
-	if ([lowerName isEqualToString:@"windows-1252"]) return NSWindowsCP1252StringEncoding;
-	if ([lowerName isEqualToString:@"windows-1253"]) return NSWindowsCP1253StringEncoding;
-	if ([lowerName isEqualToString:@"windows-1254"]) return NSWindowsCP1254StringEncoding;
-	if ([lowerName isEqualToString:@"windows-1250"]) return NSWindowsCP1250StringEncoding;
-	if ([lowerName isEqualToString:@"iso-2022-jp"]) return NSISO2022JPStringEncoding;
-	return NSASCIIStringEncoding;
 }
 
 + (NSEncodingType)createEncodingType:(const char)character {
@@ -185,22 +136,69 @@ static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_
 	return (char*)[mechaStr cStringUsingEncoding:NSUTF8StringEncoding];
 }
 
-+ (NSString*)encodePersonal:(NSString*)personal encoding:(NSStringEncoding)encoding {
-	if (encoding == NSASCIIStringEncoding) return personal;
++ (NSString*)createEncodeName:(NSStringEncoding)encoding {
+	switch (encoding) {
+		case NSJapaneseEUCStringEncoding:
+			return @"EUC-JP";
+		case NSUTF8StringEncoding:
+			return @"UTF-8";
+		case NSISOLatin1StringEncoding:
+			return @"ISO-8859-1";
+		case NSShiftJISStringEncoding:
+			return @"Shift_JIS";
+		case NSISOLatin2StringEncoding:
+			return @"ISO-8859-2";
+		case NSUnicodeStringEncoding:
+			return @"UTF-16";
+		case NSWindowsCP1251StringEncoding:
+			return @"Windows-1251";
+		case NSWindowsCP1252StringEncoding:
+			return @"Windows-1252";
+		case NSWindowsCP1253StringEncoding:
+			return @"Windows-1253";
+		case NSWindowsCP1254StringEncoding:
+			return @"Windows-1254";
+		case NSWindowsCP1250StringEncoding:
+			return @"Windows-1250";
+		case NSISO2022JPStringEncoding:
+			return @"ISO-2022-JP";
+	}
+	return nil;
+}
+
++ (NSStringEncoding)createEncoding:(NSString*)encodeName {
+	NSString* lowerName = [encodeName lowercaseString];
+	if ([lowerName isEqualToString:@"euc-jp"]) return NSJapaneseEUCStringEncoding;
+	if ([lowerName isEqualToString:@"utf-8"]) return NSUTF8StringEncoding;
+	if ([lowerName isEqualToString:@"iso-8859-1"]) return NSISOLatin1StringEncoding;
+	if ([lowerName isEqualToString:@"shift_jis"]) return NSShiftJISStringEncoding;
+	if ([lowerName isEqualToString:@"iso-8859-2"]) return NSISOLatin2StringEncoding;
+	if ([lowerName isEqualToString:@"utf-16"]) return NSUnicodeStringEncoding;
+	if ([lowerName isEqualToString:@"windows-1251"]) return NSWindowsCP1251StringEncoding;
+	if ([lowerName isEqualToString:@"windows-1252"]) return NSWindowsCP1252StringEncoding;
+	if ([lowerName isEqualToString:@"windows-1253"]) return NSWindowsCP1253StringEncoding;
+	if ([lowerName isEqualToString:@"windows-1254"]) return NSWindowsCP1254StringEncoding;
+	if ([lowerName isEqualToString:@"windows-1250"]) return NSWindowsCP1250StringEncoding;
+	if ([lowerName isEqualToString:@"iso-2022-jp"]) return NSISO2022JPStringEncoding;
+	return NSASCIIStringEncoding;
+}
+
++ (NSString*)encodeHeader:(NSString*)text encoding:(NSStringEncoding)encoding {
+	if (encoding == NSASCIIStringEncoding) return text;
 	NSString* encName = [self createEncodeName:encoding];
-	if ([NSString isEmpty:encName]) return personal;
+	if ([NSString isEmpty:encName]) return text;
 	NSMutableString* encodedPersonal = [NSMutableString stringWithFormat:@"=?%@", encName];
 	[encodedPersonal appendString:@"?B?"]; // Encoding only 'B'("BASE64", RFC2045), No use 'Q'.
-	[encodedPersonal appendString:[NSString base64Encode:personal encoding:encoding]];
+	[encodedPersonal appendString:[NSString base64Encode:text encoding:encoding]];
 	[encodedPersonal appendString:@"?="];
 	return encodedPersonal;
 }
 
-+ (NSString*)decodePersonal:(NSString*)encodedPersonal {
-	NSString* beginText = [encodedPersonal substringWithRange:NSMakeRange(0, 2)];
-	if (![beginText isEqualToString:@"=?"]) return encodedPersonal;
-	NSArray* elements = [encodedPersonal componentsSeparatedByString:@"?"];
-	if ([NSArray isEmpty:elements] || elements.count != 5) return encodedPersonal;
++ (NSString*)decodeHeader:(NSString*)encodedText {
+	NSString* beginText = [encodedText substringWithRange:NSMakeRange(0, 2)];
+	if (![beginText isEqualToString:@"=?"]) return encodedText;
+	NSArray* elements = [encodedText componentsSeparatedByString:@"?"];
+	if ([NSArray isEmpty:elements] || elements.count != 5) return encodedText;
 	NSString* encodeName = (NSString*)[elements objectAtIndex:1]; // =?(ENCODE_NAME)?(Q or B)?(TEXT)?=
 	NSStringEncoding encoding = [self createEncoding:encodeName];
 	NSEncodingType type = [self createEncodingType:[((NSString*)[elements objectAtIndex:2]) characterAtIndex:0]]; // =?(ENCODE_NAME)?(Q or B)?(TEXT)?=

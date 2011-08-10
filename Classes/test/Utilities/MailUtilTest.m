@@ -20,18 +20,18 @@
 	[super tearDown];
 }
 
-- (void)testEncodePersonal {
+- (void)testEncodeHeader {
 	NSString* personal = @"寿限無寿限無五劫の擦り切れ海砂利水魚の水行末雲来末風来末食う寝る";
-	NSString* encodePersonal = [MailUtil encodePersonal:personal encoding:NSISO2022JPStringEncoding];
+	NSString* encodePersonal = [MailUtil encodeHeader:personal encoding:NSISO2022JPStringEncoding];
 	assertThat(encodePersonal, notNilValue());
 	assertThatInteger([encodePersonal length], greaterThan([NSNumber numberWithInteger:1]));
 	assertThat(encodePersonal, equalTo(@"=?ISO-2022-JP?B?GyRCPHc4Qkw1PHc4Qkw1OF45ZSROOyQkakBaJGwzJDo9TXg/ZTV7JE4/ZTlUS3YxQE1oS3ZJd01oS3Y/KSQmPzIkaxsoQg==?="));
 	NSLog(@"encodePersonal: %@", encodePersonal);
 }
 
-- (void)testDecodePersonal {
+- (void)testDecodeHeader {
 	NSString* encodedPersonal = @"=?ISO-2022-JP?B?GyRCPHc4Qkw1PHc4Qkw1OF45ZSROOyQkakBaJGwzJDo9TXg/ZTV7JE4/ZTlUS3YxQE1oS3ZJd01oS3Y/KSQmPzIkaxsoQg==?=";
-	NSString* personal = [MailUtil decodePersonal:encodedPersonal];
+	NSString* personal = [MailUtil decodeHeader:encodedPersonal];
 	assertThat(personal, notNilValue());
 	assertThatInteger([personal length], greaterThan([NSNumber numberWithInteger:1]));
 	assertThat(personal, equalTo(@"寿限無寿限無五劫の擦り切れ海砂利水魚の水行末雲来末風来末食う寝る"));

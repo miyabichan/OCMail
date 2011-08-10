@@ -23,7 +23,7 @@
 }
 
 - (void)testSendMessage {
-	_mailOperator.sendServer = [[[SMTPServer alloc] initWithAddress:@"localhost" portNo:25u ssl:NO] autorelease];
+	_mailOperator.sendServer = [[[SMTPServer alloc] initWithAddress:@"leaf.ne.jp" portNo:25u ssl:NO] autorelease];
 	BOOL success = [_mailOperator sendMessage:nil];
 	assertThatBool(success, equalToBool(YES));
 }

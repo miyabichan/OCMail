@@ -18,8 +18,10 @@
 + (char*)createFillIpPort:(mailstream*)stream;
 + (char*)createCharStream:(NSString*)name;
 + (char*)createMechanism:(AuthMechanism)mechanism;
-+ (NSString*)encodePersonal:(NSString*)personal encoding:(NSStringEncoding)encoding;
-+ (NSString*)decodePersonal:(NSString*)encodedPersonal;
++ (NSString*)createEncodeName:(NSStringEncoding)encoding;
++ (NSStringEncoding)createEncoding:(NSString*)encodeName;
++ (NSString*)encodeHeader:(NSString*)text encoding:(NSStringEncoding)encoding;
++ (NSString*)decodeHeader:(NSString*)encodedText;
 + (NSString*)createAddress:(NSString*)encodedAddress;
 + (NSString*)wrappedText:(NSString*)text;
 + (NSString*)lineText:(NSString*)wrappedText;

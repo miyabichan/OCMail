@@ -20,4 +20,6 @@
 @property (nonatomic, copy) NSString* boundary;
 @property (nonatomic, retain) NSArray* parts;
 
+- (NSData*)createBodyData;
+
 @end

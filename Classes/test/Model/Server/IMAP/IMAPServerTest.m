@@ -438,7 +438,7 @@
 }
 
 - (void)testAppend {
-	NSString* format = @"Date: %@\r\nFrom: me@mail.mail\r\nTo: anyone@mail.mail\r\nCc: name@mail.mail\r\nSubject: OCUnit Test\r\n\r\nSend to Test Mail.";
+	NSString* format = @"Date: %@\nFrom: me@mail.mail\nTo: anyone@mail.mail\nCc: name@mail.mail\nSubject: OCUnit Test\n\nSend to Test Mail.";
 	NSString* message = [NSString stringWithFormat:format, [NSDate dateToRFC2822:[NSDate date]]];
 	_imapSever.address = @"imap.imap.imap";
 	_imapSever.portNo = 993u;

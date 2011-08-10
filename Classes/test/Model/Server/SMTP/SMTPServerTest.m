@@ -266,7 +266,7 @@
 	assertThat(numberInt(ret), equalToInt(MAILSMTP_NO_ERROR));
 	ret = [_smtpServer sendRecipients:array];
 	assertThat(numberInt(ret), equalToInt(MAILSMTP_NO_ERROR));
-	NSString* format = @"Date: %@\r\nFrom: me@mail.mail\r\nTo: anyone@mail.mail\r\nCc: name@mail.mail\r\nSubject: OCUnit Test\r\n\r\nSend to Test Mail.";
+	NSString* format = @"Date: %@\nFrom: me@mail.mail\nTo: anyone@mail.mail\nCc: name@mail.mail\nSubject: OCUnit Test\n\nSend to Test Mail.";
 	NSString* message = [NSString stringWithFormat:format, [NSDate dateToRFC2822:[NSDate date]]];
 	ret = [_smtpServer sendMessage:[message dataUsingEncoding:NSUTF8StringEncoding]];
 	assertThat(numberInt(ret), equalToInt(MAILSMTP_NO_ERROR));

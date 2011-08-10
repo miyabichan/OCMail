@@ -24,4 +24,8 @@
 	[super dealloc];
 }
 
+- (NSData*)createBodyData {
+	return nil;
+}
+
 @end

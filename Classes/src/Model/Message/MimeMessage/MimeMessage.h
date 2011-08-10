@@ -16,7 +16,8 @@
 	NSString* messageId_;
 	NSString* subject_;
 	NSString* contentType_;
-	NSString* encoding_;
+	NSString* transferEncoding_;
+	NSString* boudary_;
 	NSDate* date_;
 	InternetAddress* from_;
 	InternetAddress* sender_;
@@ -26,12 +27,14 @@
 	NSArray* bccRecipients_; // NSArray<InternetAddress*>
 	NSArray* headers_;       // NSArray<NSDictionary*>
 	MimeBody* messageBody_;
+	NSStringEncoding stringEncoding_;
 }
 
 @property (nonatomic, copy) NSString* messageId;
 @property (nonatomic, copy) NSString* subject;
 @property (nonatomic, copy) NSString* contentType;
-@property (nonatomic, copy) NSString* encoding;
+@property (nonatomic, copy) NSString* transferEncoding;
+@property (nonatomic, copy) NSString* boundary;
 @property (nonatomic, retain) NSDate* date;
 @property (nonatomic, retain) InternetAddress* from;
 @property (nonatomic, retain) InternetAddress* sender;
@@ -41,6 +44,7 @@
 @property (nonatomic, retain) NSArray* bccRecipients; // NSArray<InternetAddress*>
 @property (nonatomic, retain) NSArray* headers;		  // NSArray<NSDictionary*>
 @property (nonatomic, retain) MimeBody* messageBody;
+@property (nonatomic, assign) NSStringEncoding stringEncoding;
 
 - (NSData*)createMessageData;
 
