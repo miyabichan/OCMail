@@ -125,13 +125,17 @@
 }
 
 - (void)testCreateHeaderText {
-	NSString* text = @"ABCDEFGHIJKLMNOPあいうえおかきく0123456789012345";
-	NSString* header = [MailUtil createHeaderText:text];
-	assertThat(header, notNilValue());
-	assertThatInteger([header length], greaterThan([NSNumber numberWithInteger:1]));
-	assertThat(header, containsString(@"\n "));
-	assertThat(header, equalTo(@"ABCDEFGHIJKLMNOP\n あいうえおかきく\n 0123456789012345"));
-	NSLog(@"header:\n%@", header);
+	static NSString* raw = @"Subject: =?ISO-2022-JP?B?GyRCIiElOyUtJWUlaiVGJSMkTk0tTk80azZIGyhCNRskQjxSGyhC?=\n\t=?ISO-2022-JP?B?GyRCJCw8KCQ5ISIlOSVeITwlSCVVJSklcyROJTslLSVlJWolRhsoQg==?=\n\t=?ISO-2022-JP?B?GyRCJSMkSCRPIVobKEJJREcbJEIlWyVvJSQlSCVaITwlUSE8GyhC?=\n\t=?ISO-2022-JP?B?GyRCISYlJCVzJVUlKSVhITwlNyVnJXMbKEIgLSAyMDExLzA4LzEx?=\n\t=?ISO-2022-JP?B?GyRCIVsbKEI=?=";
+	NSArray* texts = [MailUtil createHeaderValues:raw];
+	assertThat(texts, notNilValue());
+	assertThatInteger(texts.count, greaterThan([NSNumber numberWithInteger:0]));
+	assertThatInteger(texts.count, equalToInteger(5));
+	for (NSString* text in texts) {
+		assertThat(text, containsString(@"=?ISO-2022-JP?B?"));
+		assertThat(text, containsString(@"?="));
+		NSLog(@"text: %@\n", text);
+	}
+	NSLog(@"raw: \n%@", raw);
 }
 
 @end

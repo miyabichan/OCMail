@@ -148,7 +148,7 @@ enum AddressType {
 	NSMutableString* value = [NSMutableString stringWithString:self.contentType];
 	NSString* charset = [MailUtil createEncodeName:self.stringEncoding];
 	if (self.stringEncoding > 0 && ![NSString isEmpty:charset])
-		[value appendFormat:@"; charset=%@", charset];
+		[value appendFormat:@"; charset=\"%@\"", charset];
 	if (![NSString isEmpty:self.boundary])
 		[value appendFormat:@";\n\tboundary=\"%@\"", self.boundary];
 	return value;
@@ -159,21 +159,24 @@ enum AddressType {
 - (NSData*)createMessageData {
 	NSMutableData* data = [NSMutableData data];
 	if (!self.date) self.date = [NSDate date];
-	[data appendData:[self createHeaderData:[self createMessageHeader:DATE value:[NSDate dateToRFC2822:self.date]] encoding:NSUTF8StringEncoding]];
+	[data appendData:[self createHeaderData:[self createMessageHeader:DATE value:[NSDate dateToRFC2822:self.date]] encoding:NSASCIIStringEncoding]];
 	if (self.from)
-		[data appendData:[self createHeaderData:[self createMessageHeader:FROM value:[self.from description]] encoding:NSUTF8StringEncoding]];
+		[data appendData:[self createHeaderData:[self createMessageHeader:FROM value:[self.from description]] encoding:NSASCIIStringEncoding]];
 	if (![NSArray isEmpty:self.toRecipients])
-		[data appendData:[self createHeaderData:[self createMessageHeader:TO value:[self createRecipientsString:self.toRecipients]] encoding:NSUTF8StringEncoding]];
+		[data appendData:[self createHeaderData:[self createMessageHeader:TO value:[self createRecipientsString:self.toRecipients]] encoding:NSASCIIStringEncoding]];
 	if (![NSArray isEmpty:self.ccRecipients])
-		[data appendData:[self createHeaderData:[self createMessageHeader:CC value:[self createRecipientsString:self.ccRecipients]] encoding:NSUTF8StringEncoding]];
+		[data appendData:[self createHeaderData:[self createMessageHeader:CC value:[self createRecipientsString:self.ccRecipients]] encoding:NSASCIIStringEncoding]];
 	if (![NSArray isEmpty:self.bccRecipients])
-		[data appendData:[self createHeaderData:[self createMessageHeader:BCC value:[self createRecipientsString:self.bccRecipients]] encoding:NSUTF8StringEncoding]];
+		[data appendData:[self createHeaderData:[self createMessageHeader:BCC value:[self createRecipientsString:self.bccRecipients]] encoding:NSASCIIStringEncoding]];
 	if (self.replyTo)
-		[data appendData:[self createHeaderData:[self createMessageHeader:REPLYTO value:[self.replyTo description]] encoding:NSUTF8StringEncoding]];
+		[data appendData:[self createHeaderData:[self createMessageHeader:REPLYTO value:[self.replyTo description]] encoding:NSASCIIStringEncoding]];
 	if (self.subject)
-		[data appendData:[self createHeaderData:[self createMessageHeader:SUBJECT value:[self createSubjectHeader]] encoding:NSUTF8StringEncoding]];
+		[data appendData:[self createHeaderData:[self createMessageHeader:SUBJECT value:[self createSubjectHeader]] encoding:NSASCIIStringEncoding]];
 	if (![NSString isEmpty:self.contentType])
-		[data appendData:[self createHeaderData:[self createMessageHeader:CONTENTTYPE value:[self createContentTypeHeader]] encoding:NSUTF8StringEncoding]];
+		[data appendData:[self createHeaderData:[self createMessageHeader:CONTENTTYPE value:[self createContentTypeHeader]] encoding:NSASCIIStringEncoding]];
+	if (![NSString isEmpty:self.transferEncoding])
+		[data appendData:[self createHeaderData:[self createMessageHeader:ENCODING value:self.transferEncoding] encoding:NSASCIIStringEncoding]];
+	[data appendData:[@"MIME-Version: 1.0\n" dataUsingEncoding:NSUTF8StringEncoding]];
 	return data;
 }
 

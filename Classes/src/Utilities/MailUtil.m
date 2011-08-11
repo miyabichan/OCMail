@@ -263,14 +263,17 @@ static int fill_ip_port(mailstream* stream, char* ip_port, size_t local_ip_port_
 	return texts;
 }
 
-+ (NSString*)createHeaderText:(NSString*)text {
-	NSArray* shorts = [self createShortTexts:text];
-	NSMutableString* headerText = [NSMutableString string];
-	for (NSString* string in shorts) {
-		[headerText appendFormat:@"%@\n ", string];
+#define MAIL_HEADER_PATTERN @"=\\?[[:graph:]]+\\?=$"
+
++ (NSArray*)createHeaderValues:(NSString*)text {
+	NSError* error = nil;
+	NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:MAIL_HEADER_PATTERN options:NSRegularExpressionAnchorsMatchLines error:&error];
+	NSArray* matches = [regex matchesInString:text options:0 range:NSMakeRange(0, [text length])];
+	NSMutableArray* values = [NSMutableArray array];
+	for (NSTextCheckingResult* result in matches) {
+		[values	addObject:[text substringWithRange:result.range]];
 	}
-	[headerText deleteCharactersInRange:NSMakeRange([headerText length] - 2, 2)];
-	return headerText;
+	return values;
 }
 
 @end

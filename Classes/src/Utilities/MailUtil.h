@@ -26,6 +26,6 @@
 + (NSString*)wrappedText:(NSString*)text;
 + (NSString*)lineText:(NSString*)wrappedText;
 + (NSArray*)createShortTexts:(NSString*)text;
-+ (NSString*)createHeaderText:(NSString*)text;
++ (NSArray*)createHeaderValues:(NSString*)text;
 
 @end
