@@ -29,7 +29,6 @@
 		8800A9C013E93CB800FC74D2 /* InternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8D1D113B963110042D9EA /* InternetAddress.m */; };
 		8800A9C113E93CC200FC74D2 /* MimeBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ABF13B82796000C5E44 /* MimeBody.m */; };
 		8800A9C413E93CFD00FC74D2 /* MimeMessageTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8800A9C213E93CFD00FC74D2 /* MimeMessageTest.h */; };
-		8800A9C513E93CFD00FC74D2 /* MimeMessageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8800A9C313E93CFD00FC74D2 /* MimeMessageTest.m */; };
 		8800A9C613E93CFD00FC74D2 /* MimeMessageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8800A9C313E93CFD00FC74D2 /* MimeMessageTest.m */; };
 		8800A9C713E93E0700FC74D2 /* libetpan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 886C8AA1137B544C00C45F6A /* libetpan.a */; };
 		8800A9C813E93E0700FC74D2 /* libOCHamcrest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06EAE1339CABD0044FAF2 /* libOCHamcrest.a */; };
@@ -118,7 +117,6 @@
 		883E63BB13D55CD000DA3541 /* BodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ACA13B84D9A000C5E44 /* BodyPart.m */; };
 		883E63BC13D55CD800DA3541 /* InternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8D1D113B963110042D9EA /* InternetAddress.m */; };
 		883E63BF13D55D0700DA3541 /* MailOperatorTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 883E63BD13D55D0700DA3541 /* MailOperatorTest.h */; };
-		883E63C013D55D0700DA3541 /* MailOperatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E63BE13D55D0700DA3541 /* MailOperatorTest.m */; };
 		883E63C113D55D0700DA3541 /* MailOperatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E63BE13D55D0700DA3541 /* MailOperatorTest.m */; };
 		884BB4CC13838B62007468F8 /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
 		884BB4CE13838B62007468F8 /* NSDate+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 884BB4CA13838B62007468F8 /* NSDate+Util.m */; };
@@ -1765,8 +1763,6 @@
 				88299AC613B827ED000C5E44 /* MimeMessage.m in Sources */,
 				88299ACC13B84D9A000C5E44 /* BodyPart.m in Sources */,
 				88E8D1D313B963110042D9EA /* InternetAddress.m in Sources */,
-				883E63C013D55D0700DA3541 /* MailOperatorTest.m in Sources */,
-				8800A9C513E93CFD00FC74D2 /* MimeMessageTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
