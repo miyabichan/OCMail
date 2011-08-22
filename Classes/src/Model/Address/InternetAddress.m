@@ -20,6 +20,13 @@
 
 #pragma mark - Inherit Methods
 
+- (void)dealloc {
+	self.address = nil;
+	self.personal = nil;
+	self.encodedPersonal = nil;
+	[super dealloc];
+}
+
 - (NSString*)description {
 	if ([NSString isEmpty:self.address]) return nil;
 	if ([NSString isEmpty:self.personal] && [NSString isEmpty:self.encodedPersonal]) return self.address;

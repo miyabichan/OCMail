@@ -17,4 +17,7 @@
 	MailOperator* mailOperator_;
 }
 
+@property (nonatomic, retain) InternetAddress* address;
+@property (nonatomic, retain) MailOperator* mailOperator;
+
 @end

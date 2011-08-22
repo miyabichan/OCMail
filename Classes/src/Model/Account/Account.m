@@ -11,4 +11,15 @@
 
 @implementation Account
 
+@synthesize address = address_;
+@synthesize mailOperator = mailOperator_;
+
+#pragma mark - Inherit Methods
+
+- (void)dealloc {
+	self.address = nil;
+	self.mailOperator = nil;
+	[super dealloc];
+}
+
 @end
