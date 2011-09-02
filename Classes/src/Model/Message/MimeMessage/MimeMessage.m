@@ -177,6 +177,9 @@ enum AddressType {
 	if (![NSString isEmpty:self.transferEncoding])
 		[data appendData:[self createHeaderData:[self createMessageHeader:ENCODING value:self.transferEncoding] encoding:NSASCIIStringEncoding]];
 	[data appendData:[@"MIME-Version: 1.0\n" dataUsingEncoding:NSUTF8StringEncoding]];
+	NSData* bodyData = [self.messageBody createBodyData];
+	if (![NSData isEmpty:bodyData])
+		[data appendData:bodyData];
 	return data;
 }
 

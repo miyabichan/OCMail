@@ -153,6 +153,7 @@
 		886C8B4B137B848E00C45F6A /* NSData+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B41137B848E00C45F6A /* NSData+Util.m */; };
 		886C8B4E137B848E00C45F6A /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B43137B848E00C45F6A /* NSString+Util.m */; };
 		886C8B51137B848E00C45F6A /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 886C8B45137B848E00C45F6A /* UIImage+Util.m */; };
+		88A29A3C140496250019B44A /* BodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 88299ACA13B84D9A000C5E44 /* BodyPart.m */; };
 		88E8D1D213B963110042D9EA /* InternetAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 88E8D1D013B963110042D9EA /* InternetAddress.h */; };
 		88E8D1D313B963110042D9EA /* InternetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8D1D113B963110042D9EA /* InternetAddress.m */; };
 		88E8D1F213B9AE8A0042D9EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E06E431339C24C0044FAF2 /* UIKit.framework */; };
@@ -1708,6 +1709,7 @@
 				8800A9CD13E9449500FC74D2 /* NSDate+Util.m in Sources */,
 				8800A9CE13E9449500FC74D2 /* NSString+Util.m in Sources */,
 				8800A9CF13E9449500FC74D2 /* UIImage+Util.m in Sources */,
+				88A29A3C140496250019B44A /* BodyPart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

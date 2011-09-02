@@ -19,6 +19,8 @@
 - (BOOL)authSendServer;
 - (BOOL)sendFromAddress:(InternetAddress*)address;
 - (BOOL)sendRecipients:(NSArray*)recipients;
+- (NSArray*)createRecipients:(MimeMessage*)message;
+- (BOOL)sendMimeMessage:(MimeMessage*)message;
 @end
 
 
@@ -65,8 +67,11 @@
 - (BOOL)sendMessage:(MimeMessage*)message {
 	assert(self.sendServer != nil && [self.sendServer isKindOfClass:[SMTPServer class]]);
 	if (![self connectSendServer]) return NO;
+	if (![self authSendServer]) return NO;
 	if (![NSString isEmpty:self.sendServer.userName] && ![self authSendServer]) return NO;
 	if (![self sendFromAddress:message.from]) return NO;
+	if (![self sendRecipients:[self createRecipients:message]]) return NO;
+	if (![self sendMimeMessage:message]) return NO;
 	return YES;
 }
 
@@ -89,7 +94,23 @@
 }
 
 - (BOOL)sendRecipients:(NSArray*)recipients {
+	if ([NSArray isEmpty:recipients]) return NO;
 	if ([((SMTPServer*)self.sendServer) sendRecipients:recipients] != MAILSMTP_NO_ERROR) return NO;
+	return YES;
+}
+
+- (NSArray*)createRecipients:(MimeMessage*)message {
+	NSMutableArray* recipients = [NSMutableArray array];
+	if (![NSArray isEmpty:message.toRecipients]) [recipients addObjectsFromArray:message.toRecipients];
+	if (![NSArray isEmpty:message.ccRecipients]) [recipients addObjectsFromArray:message.ccRecipients];
+	if (![NSArray isEmpty:message.bccRecipients]) [recipients addObjectsFromArray:message.bccRecipients];
+	return recipients;
+}
+
+- (BOOL)sendMimeMessage:(MimeMessage*)message {
+	NSData* messageData = [message createMessageData];
+	if ([NSData isEmpty:messageData]) return NO;
+	if ([(SMTPServer*)self.sendServer sendMessage:messageData] != MAILSMTP_NO_ERROR) return NO;
 	return YES;
 }
 
